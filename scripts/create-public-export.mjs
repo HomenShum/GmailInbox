@@ -82,9 +82,9 @@ const excludedPrefixes = [
 ];
 
 const publicDemoExceptions = new Set(["public/demo/README.md"]);
+publicDemoExceptions.add("public/demo/gmail-workspace-public-demo.gif");
 
-await fs.rm(outDir, { recursive: true, force: true });
-await fs.mkdir(outDir, { recursive: true });
+await resetOutDir();
 
 const copied = [];
 
@@ -177,4 +177,21 @@ function isExcluded(relativePath) {
 
 function normalize(value) {
   return value.replaceAll("\\", "/").replace(/^\/+/, "");
+}
+
+async function resetOutDir() {
+  const gitDir = path.join(outDir, ".git");
+  const hasGit = await fs.stat(gitDir).then((stat) => stat.isDirectory()).catch(() => false);
+  if (!hasGit) {
+    await fs.rm(outDir, { recursive: true, force: true });
+    await fs.mkdir(outDir, { recursive: true });
+    return;
+  }
+
+  await fs.mkdir(outDir, { recursive: true });
+  const entries = await fs.readdir(outDir, { withFileTypes: true });
+  for (const entry of entries) {
+    if (entry.name === ".git") continue;
+    await fs.rm(path.join(outDir, entry.name), { recursive: true, force: true });
+  }
 }

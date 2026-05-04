@@ -17,6 +17,7 @@
     "private-context:promote": "tsx scripts/promote-private-identity-claims.ts",
     "verify:nodebench": "tsx scripts/verify-nodebench-bridge.ts",
     "public:export": "node scripts/create-public-export.mjs",
+    "demo:readme-gif": "python scripts/make-readme-gif.py",
     "demo:video:audio": "node scripts/make-gmail-demo-audio.mjs",
     "demo:video": "npm run demo:video:audio && remotion render remotion/index.ts GmailAgentDemo public/demo/gmail-agent-memory-demo.mp4 --codec=h264 --crf=18 --pixel-format=yuv420p --port=3038",
     "demo:video:vertical": "npm run demo:video:audio && remotion render remotion/index.ts GmailAgentDemoVertical public/demo/gmail-agent-memory-demo-vertical.mp4 --codec=h264 --crf=18 --pixel-format=yuv420p --port=3039",

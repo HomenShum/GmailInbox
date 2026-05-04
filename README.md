@@ -4,6 +4,40 @@ Local-first Gmail command center for turning a large inbox into a small set of d
 
 The core idea is simple: private data stays local, public research is delegated to NodeBench, and every agent output needs evidence.
 
+![Public-safe Gmail Workspace demo](public/demo/gmail-workspace-public-demo.gif)
+
+## Runtime At A Glance
+
+```text
++------------------------- USER / BROWSER -------------------------+
+| Next.js workspace UI                                              |
+| Today, Inbox, Calendar, Settings, TopJobEmails, Pinned Context     |
+| Runs on localhost:3030 now; Vercel is the public web host target   |
++-------------------------------+----------------------------------+
+                                | fetch / REST
+                                v
++------------------------- NEXT API RUNTIME ------------------------+
+| app/api/* route handlers                                          |
+| career-fit, nodebench/job-research, pinned-artifacts, chat, Gmail  |
+| MCP-compatible tool handlers live in src/lib/tools.ts              |
++----------------+---------------------------+----------------------+
+                 | better-sqlite3            | public-safe MCP/REST
+                 v                           v
++---------------- LOCAL PRIVATE STORE -------+    +--- NODEBENCH PUBLIC LAYER ---+
+| SQLite WAL in src/data/*.db                     | Hosted MCP gateway             |
+| emails, private_email_bodies, pinned_artifacts  | Render service endpoint        |
+| private_identity_claims, job_research_contexts  | Convex public research/ledger  |
+| Raw Gmail bodies, resumes, and local scoring    | Reusable sourced dossiers      |
++----------------+----------------------------+    +---------------+--------------+
+                 | aggregate shards + claims                       | public packs
+                 v                                                  v
++---------------- AGENT / MODEL LAYER ------------------------------+
+| Local demo agent or OpenRouter / Anthropic / OpenAI / Gemini       |
+| Sees snippets, aggregate shard summaries, and public context packs |
+| Does not receive raw resume files or raw Gmail bodies by default   |
++-------------------------------------------------------------------+
+```
+
 ## What It Does
 
 - **Today-first workspace**: starts from the jobs and decisions that need attention now instead of showing every lane at once.
@@ -133,37 +167,7 @@ Never send:
 
 ## Architecture
 
-Architecture at a glance:
-
-```text
-+------------------------- USER / BROWSER -------------------------+
-| Next.js workspace UI                                              |
-| Today, Inbox, Calendar, Settings, TopJobEmails, Pinned Context     |
-| Runs on localhost:3030 now; Vercel is the public web host target   |
-+-------------------------------+----------------------------------+
-                                | fetch / REST
-                                v
-+------------------------- NEXT API RUNTIME ------------------------+
-| app/api/* route handlers                                          |
-| career-fit, nodebench/job-research, pinned-artifacts, chat, Gmail  |
-| MCP-compatible tool handlers live in src/lib/tools.ts              |
-+----------------+---------------------------+----------------------+
-                 | better-sqlite3            | public-safe MCP/REST
-                 v                           v
-+---------------- LOCAL PRIVATE STORE -------+    +--- NODEBENCH PUBLIC LAYER ---+
-| SQLite WAL in src/data/*.db                     | Hosted MCP gateway             |
-| emails, private_email_bodies, pinned_artifacts  | Render service endpoint        |
-| private_identity_claims, job_research_contexts  | Convex public research/ledger  |
-| Raw Gmail bodies, resumes, and local scoring    | Reusable sourced dossiers      |
-+----------------+----------------------------+    +---------------+--------------+
-                 | aggregate shards + claims                       | public packs
-                 v                                                  v
-+---------------- AGENT / MODEL LAYER ------------------------------+
-| Local demo agent or OpenRouter / Anthropic / OpenAI / Gemini       |
-| Sees snippets, aggregate shard summaries, and public context packs |
-| Does not receive raw resume files or raw Gmail bodies by default   |
-+-------------------------------------------------------------------+
-```
+The headline runtime diagram is intentionally visible at the top of this README.
 
 Deployment boundary:
 

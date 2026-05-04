@@ -33,6 +33,7 @@ public/demo/*.webm
 public/demo/*.gif
 public/demo/*-poster.png
 !public/demo/README.md
+!public/demo/gmail-workspace-public-demo.gif
 public/remotion-assets/
 public/remotion-generated/
 public/all-time-identity-mindmap.*
