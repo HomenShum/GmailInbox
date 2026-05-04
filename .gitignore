@@ -35,6 +35,13 @@ public/demo/*-poster.png
 !public/demo/README.md
 !public/demo/gmail-workspace-public-demo.gif
 !public/demo/gmail-workspace-public-demo-poster.png
+!public/demo/gmail-magic-resend.gif
+!public/demo/gmail-magic-resend.poster.png
+!public/demo/workflow-lanes-demo.gif
+!public/demo/workflow-lanes-demo.poster.png
+!public/demo/qa-dogfood-snapshots.png
+!public/demo/person-state-matrix.png
+!public/demo/remotion-workflow-storyboard.png
 public/remotion-assets/
 public/remotion-generated/
 public/all-time-identity-mindmap.*

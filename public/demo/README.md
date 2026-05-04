@@ -1,15 +1,32 @@
-# Local Demo Output
+# Public-Safe Demo Output
 
-Rendered demo videos are generated here and ignored by git.
+This folder contains two classes of media:
 
-This is intentional. Videos and GIFs can capture private Gmail content, account labels, local file names, browser tabs, or personal analytics. Keep generated media local unless it has been reviewed and sanitized.
+- committed public-safe synthetic assets for README storytelling
+- ignored local render outputs that may contain private screenshots or reviewed video exports
 
 Use:
 
 ```bash
+npm run demo:readme-gif
+npm run demo:showcase-assets
 npm run demo:video:audio
 npm run demo:video
 npm run demo:video:vertical
 ```
 
+Committed public-safe assets:
+
+- `gmail-workspace-public-demo.gif`
+- `gmail-workspace-public-demo-poster.png`
+- `gmail-magic-resend.gif`
+- `gmail-magic-resend.poster.png`
+- `workflow-lanes-demo.gif`
+- `workflow-lanes-demo.poster.png`
+- `qa-dogfood-snapshots.png`
+- `person-state-matrix.png`
+- `remotion-workflow-storyboard.png`
+
 Public-safe source assets live in `public/remotion-public-assets/`.
+
+Do not commit screenshots, GIFs, or videos captured from a real Gmail account unless they have been manually reviewed and sanitized.

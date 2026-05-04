@@ -84,6 +84,13 @@ const excludedPrefixes = [
 const publicDemoExceptions = new Set(["public/demo/README.md"]);
 publicDemoExceptions.add("public/demo/gmail-workspace-public-demo.gif");
 publicDemoExceptions.add("public/demo/gmail-workspace-public-demo-poster.png");
+publicDemoExceptions.add("public/demo/gmail-magic-resend.gif");
+publicDemoExceptions.add("public/demo/gmail-magic-resend.poster.png");
+publicDemoExceptions.add("public/demo/workflow-lanes-demo.gif");
+publicDemoExceptions.add("public/demo/workflow-lanes-demo.poster.png");
+publicDemoExceptions.add("public/demo/qa-dogfood-snapshots.png");
+publicDemoExceptions.add("public/demo/person-state-matrix.png");
+publicDemoExceptions.add("public/demo/remotion-workflow-storyboard.png");
 
 await resetOutDir();
 

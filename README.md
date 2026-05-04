@@ -4,17 +4,73 @@ Local-first Gmail command center for turning a large inbox into a small set of d
 
 The core idea is simple: private data stays local, public research is delegated to NodeBench, and every agent output needs evidence.
 
-## Public Demo
+## Visual Showcase
+
+This repo is meant to communicate by artifact: every feature claim should have a public-safe visual, a QA dogfood note, and a reproducible script.
+
+| Artifact | What It Proves | File |
+| --- | --- | --- |
+| Magic resend / reply QA | Draft, check, and approval-gate follow-up without sending externally | `public/demo/gmail-magic-resend.gif` |
+| One workspace lanes | Today, Inbox, Calendar, and Goals stay distinct and readable | `public/demo/workflow-lanes-demo.gif` |
+| Snapshot correction | Before/finding/after dogfood proof for UI changes | `public/demo/qa-dogfood-snapshots.png` |
+| Person-state matrix | Same lanes adapt to job seeker, recruiter, student, and operator states | `public/demo/person-state-matrix.png` |
+| Remotion storyboard | End-to-end video scenes generated from sanitized assets | `public/demo/remotion-workflow-storyboard.png` |
+
+### Gmail Magic Resend / Reply QA
 
 <p>
-  <img src="https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/gmail-workspace-public-demo-poster.png" alt="Public-safe Gmail Workspace demo poster" width="960" />
+  <img src="https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/gmail-magic-resend.gif" alt="Gmail magic resend QA flow" width="960" />
 </p>
+
+Feature contract:
+
+- Read the job thread from synthetic/public-safe data.
+- Pull pinned context and public NodeBench research.
+- Produce a review-safe draft.
+- Stop at a human approval gate before any real send.
+
+### QA Dogfood Corrections
+
+<p>
+  <img src="https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/qa-dogfood-snapshots.png" alt="QA dogfood before finding after correction" width="960" />
+</p>
+
+Every visible UI correction should leave a trail: what looked wrong, what the dogfood finding was, and what changed.
+
+### Clear Lanes
+
+<p>
+  <img src="https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/workflow-lanes-demo.gif" alt="One workspace clear lanes demo" width="960" />
+</p>
+
+The downsized navigation is intentional: one workspace with stable lanes instead of many similar pages.
+
+### User And Person States
+
+<p>
+  <img src="https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/person-state-matrix.png" alt="User states and person states matrix" width="960" />
+</p>
+
+The same workspace should work for different people by changing defaults, copy, and artifacts, not by fragmenting the app into more tabs.
+
+### Remotion End-to-End Workflow Video
+
+<p>
+  <img src="https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/remotion-workflow-storyboard.png" alt="Remotion end-to-end workflow storyboard" width="960" />
+</p>
+
+The Remotion demo is scene-based so the video can explain every state transition: scale problem, private memory, top jobs, NodeBench research, identity trends, and QA proof.
+
+```bash
+npm run demo:video
+npm run demo:video:vertical
+```
+
+### Public-Safe Overview GIF
 
 <p>
   <img src="https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/gmail-workspace-public-demo.gif" alt="Public-safe Gmail Workspace animated demo" width="960" />
 </p>
-
-[Open the demo GIF directly](https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/gmail-workspace-public-demo.gif)
 
 ## Runtime At A Glance
 
