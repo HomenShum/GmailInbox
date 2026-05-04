@@ -83,6 +83,7 @@ const excludedPrefixes = [
 
 const publicDemoExceptions = new Set(["public/demo/README.md"]);
 publicDemoExceptions.add("public/demo/gmail-workspace-public-demo.gif");
+publicDemoExceptions.add("public/demo/gmail-workspace-public-demo-poster.png");
 
 await resetOutDir();
 

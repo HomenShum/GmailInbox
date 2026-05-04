@@ -34,6 +34,7 @@ public/demo/*.gif
 public/demo/*-poster.png
 !public/demo/README.md
 !public/demo/gmail-workspace-public-demo.gif
+!public/demo/gmail-workspace-public-demo-poster.png
 public/remotion-assets/
 public/remotion-generated/
 public/all-time-identity-mindmap.*

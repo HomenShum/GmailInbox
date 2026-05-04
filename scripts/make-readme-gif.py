@@ -4,6 +4,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "public" / "demo" / "gmail-workspace-public-demo.gif"
+POSTER = ROOT / "public" / "demo" / "gmail-workspace-public-demo-poster.png"
 WIDTH, HEIGHT = 960, 540
 FPS = 10
 FRAMES_PER_SCENE = 14
@@ -187,7 +188,9 @@ def main():
         loop=0,
         optimize=True,
     )
+    frames[0].save(POSTER)
     print(f"wrote {OUT}")
+    print(f"wrote {POSTER}")
 
 
 if __name__ == "__main__":
