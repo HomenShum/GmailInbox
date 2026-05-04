@@ -7,14 +7,14 @@ The core idea is simple: private data stays local, public research is delegated 
 ## Public Demo
 
 <p>
-  <img src="./public/demo/gmail-workspace-public-demo.gif?raw=true" alt="Public-safe Gmail Workspace animated demo" width="960" />
+  <img src="https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/gmail-workspace-public-demo-poster.png" alt="Public-safe Gmail Workspace demo poster" width="960" />
 </p>
 
 <p>
-  <img src="./public/demo/gmail-workspace-public-demo-poster.png?raw=true" alt="Public-safe Gmail Workspace demo poster" width="960" />
+  <img src="https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/gmail-workspace-public-demo.gif" alt="Public-safe Gmail Workspace animated demo" width="960" />
 </p>
 
-[Open the demo GIF directly](./public/demo/gmail-workspace-public-demo.gif)
+[Open the demo GIF directly](https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/gmail-workspace-public-demo.gif)
 
 ## Runtime At A Glance
 
