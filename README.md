@@ -4,7 +4,11 @@ Local-first Gmail command center for turning a large inbox into a small set of d
 
 The core idea is simple: private data stays local, public research is delegated to NodeBench, and every agent output needs evidence.
 
-![Public-safe Gmail Workspace demo](public/demo/gmail-workspace-public-demo.gif)
+## Public Demo
+
+![Public-safe Gmail Workspace demo](https://raw.githubusercontent.com/HomenShum/gmail-workspace-public/main/public/demo/gmail-workspace-public-demo.gif)
+
+[Open the demo GIF directly](https://raw.githubusercontent.com/HomenShum/gmail-workspace-public/main/public/demo/gmail-workspace-public-demo.gif)
 
 ## Runtime At A Glance
 
