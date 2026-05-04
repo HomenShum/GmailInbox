@@ -1,0 +1,57 @@
+node_modules
+.next
+.turbo
+dist
+out
+.env*
+src/data/*.db
+src/data/*.db-shm
+src/data/*.db-wal
+src/data/.token-key
+.DS_Store
+*.tsbuildinfo
+*.log
+.vercel
+.idea/
+.vscode/
+.playwright-mcp/
+.serena/
+playwright-report/
+test-results/
+exact_parity_UI_reference/
+.claude/
+snapshots/
+scripts/output/
+NUL
+
+# Generated private/demo evidence. These may contain real inbox screenshots,
+# identity graphs, rendered videos, or local-account traces.
+reports/
+public/demo.gif
+public/demo/*.mp4
+public/demo/*.webm
+public/demo/*.gif
+public/demo/*-poster.png
+!public/demo/README.md
+public/remotion-assets/
+public/remotion-generated/
+public/all-time-identity-mindmap.*
+public/job-recruiter-signal-journey.*
+/all-time-identity-mindmap*.png
+/job-recruiter-signal-journey*.png
+/gmail-autopilot-dashboard.png
+/nodebench-*.png
+/opened-hi-fi-plan.png
+/today-*.png
+/top-jobs-*.png
+
+# Internal planning/audit artifacts can reference private inbox context.
+docs/engineering-decision-log.md
+docs/private-context-pipeline-learning-points.md
+docs/sitflow-hifi/
+
+# one-off migration scripts (not part of build)
+update_*.py
+
+# downloaded oauth client json (sensitive)
+client_secret_*.json

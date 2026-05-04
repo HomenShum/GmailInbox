@@ -1,0 +1,228 @@
+# Gmail Workspace
+
+Local-first Gmail command center for turning a large inbox into a small set of decisions: top jobs, reply queues, calendar blocks, goals, briefings, and agent-assisted follow-up.
+
+The core idea is simple: private data stays local, public research is delegated to NodeBench, and every agent output needs evidence.
+
+## What It Does
+
+- **Today-first workspace**: starts from the jobs and decisions that need attention now instead of showing every lane at once.
+- **Inbox triage**: classifies Gmail into bounded lanes, keeps low-confidence items reviewable, and supports modal email reading.
+- **Pinned context**: lets a user pin resumes, story banks, target lists, prompts, and local files as visible agent context.
+- **Top job ranking**: ranks job and recruiter emails against pinned local context without sending raw resumes externally.
+- **NodeBench bridge**: sends only public-safe signals such as company, role title, sender domain, and public job URL to NodeBench for sourced public dossiers.
+- **Private memory pipeline**: can ingest full thread bodies locally, shard them, judge aggregate claims, and promote evidence-backed memory for agent use.
+- **Remotion demo**: renders a public-safe product video from sanitized source assets.
+
+## Privacy Boundary
+
+This repo is designed to be publicizable without exposing a real Gmail account, but only if generated private artifacts stay out of git.
+
+Safe to commit:
+
+- app source code
+- synthetic seed data
+- public-safe SVG demo assets in `public/remotion-public-assets/`
+- Remotion composition source
+- docs that do not include raw inbox content, local paths, tokens, or personal account traces
+
+Do not commit:
+
+- `.env*`
+- SQLite data in `src/data/*.db*`
+- OAuth token key at `src/data/.token-key`
+- Google OAuth client secrets
+- rendered videos or GIFs from a real account
+- raw app screenshots from a real account
+- generated identity maps or recruiter trend files from private email history
+- raw resume paths or private document contents
+
+The `.gitignore` enforces the main local-only artifact paths. See [docs/publication-checklist.md](docs/publication-checklist.md) before making the repo public, and [docs/publication-decisions.md](docs/publication-decisions.md) for the decision log behind the cleanup.
+
+## Demo Video
+
+The public Remotion source uses sanitized SVG assets. Generated videos are local-only by default because a video can easily capture private screenshots or account text.
+
+```bash
+npm run demo:video:audio
+npm run demo:video
+npm run demo:video:vertical
+```
+
+Outputs are written to `public/demo/` and ignored by git:
+
+- `public/demo/gmail-agent-memory-demo.mp4`
+- `public/demo/gmail-agent-memory-demo-vertical.mp4`
+
+For a public release, render with sanitized assets, inspect the frames, then upload the final MP4 as a GitHub Release asset or LinkedIn upload rather than committing it into repo history.
+
+## Quick Start
+
+```bash
+npm install
+cp .env.example .env.local
+npm run seed
+npm run dev
+```
+
+Open `http://localhost:3030`.
+
+Optional model keys:
+
+- `OPENROUTER_API_KEY`
+- `ANTHROPIC_API_KEY`
+- `OPENAI_API_KEY`
+- `GEMINI_API_KEY`
+
+Without a model key, the app uses a deterministic demo agent for core flows.
+
+## Real Gmail
+
+Gmail OAuth is local-first:
+
+- tokens are encrypted at rest
+- metadata sync is idempotent
+- archive and mutation flows mirror to Gmail first, then update local state
+- full body ingest is opt-in and private
+
+Set up OAuth with:
+
+```text
+GOOGLE_CLIENT_ID=...
+GOOGLE_CLIENT_SECRET=...
+```
+
+Redirect URI:
+
+```text
+http://localhost:3030/api/auth/google/callback
+```
+
+## NodeBench Integration
+
+The Gmail app can call the hosted NodeBench MCP gateway for public research:
+
+```text
+NODEBENCH_MCP_URL=https://nodebench-mcp-unified.onrender.com?profile=gmail-research
+NODEBENCH_MCP_PROFILE=gmail-research
+NODEBENCH_MCP_CLIENT_ID=gmail-dashboard-local
+```
+
+Tokens are optional for anonymous metered usage:
+
+```text
+NODEBENCH_MCP_TOKEN=...
+NODEBENCH_GMAIL_RESEARCH_TOKEN=...
+```
+
+Allowed outbound signals:
+
+- company name
+- role title
+- sender domain
+- recruiter name
+- public job URL
+
+Never send:
+
+- raw email bodies
+- raw resume text
+- private notes
+- private files
+- local fit score inputs
+
+## Architecture
+
+Architecture at a glance:
+
+```text
++------------------------- USER / BROWSER -------------------------+
+| Next.js workspace UI                                              |
+| Today, Inbox, Calendar, Settings, TopJobEmails, Pinned Context     |
+| Runs on localhost:3030 now; Vercel is the public web host target   |
++-------------------------------+----------------------------------+
+                                | fetch / REST
+                                v
++------------------------- NEXT API RUNTIME ------------------------+
+| app/api/* route handlers                                          |
+| career-fit, nodebench/job-research, pinned-artifacts, chat, Gmail  |
+| MCP-compatible tool handlers live in src/lib/tools.ts              |
++----------------+---------------------------+----------------------+
+                 | better-sqlite3            | public-safe MCP/REST
+                 v                           v
++---------------- LOCAL PRIVATE STORE -------+    +--- NODEBENCH PUBLIC LAYER ---+
+| SQLite WAL in src/data/*.db                     | Hosted MCP gateway             |
+| emails, private_email_bodies, pinned_artifacts  | Render service endpoint        |
+| private_identity_claims, job_research_contexts  | Convex public research/ledger  |
+| Raw Gmail bodies, resumes, and local scoring    | Reusable sourced dossiers      |
++----------------+----------------------------+    +---------------+--------------+
+                 | aggregate shards + claims                       | public packs
+                 v                                                  v
++---------------- AGENT / MODEL LAYER ------------------------------+
+| Local demo agent or OpenRouter / Anthropic / OpenAI / Gemini       |
+| Sees snippets, aggregate shard summaries, and public context packs |
+| Does not receive raw resume files or raw Gmail bodies by default   |
++-------------------------------------------------------------------+
+```
+
+Deployment boundary:
+
+- **Vercel**: intended host for the Next.js web/API surface.
+- **Local SQLite**: private Gmail data, raw bodies, pinned files, and fit scoring.
+- **NodeBench MCP on Render**: public-safe company, person, and role research.
+- **NodeBench Convex**: public research storage, usage ledger, and reusable claims.
+- **Google Gmail API**: OAuth and mailbox actions; tokens stay encrypted locally.
+
+More detailed runtime diagrams for the NodeBench job bridge, private memory pipeline, and pinned context matching live in [docs/RUNTIME.md](docs/RUNTIME.md).
+
+```text
+Next.js app
+|-- src/app                workspace routes and API routes
+|-- src/components         inbox, jobs, shell, context, approvals
+|-- src/lib/db.ts          SQLite schema, read models, local persistence
+|-- src/lib/tools.ts       MCP-compatible tool handlers
+|-- src/lib/nodebench      public research bridge
+|-- src/lib/pinned-*       local pinned context
+|-- scripts                ingest, verify, trend, demo, NodeBench jobs
+|-- remotion               demo video composition
+```
+
+## Useful Scripts
+
+```bash
+npm run typecheck
+npm run build
+npm run seed
+npm run verify:nodebench
+npm run nodebench:top-jobs
+npm run gmail:body-ingest
+npm run private-context:status
+npm run private-context:judge
+npm run demo:video
+```
+
+## Publicizing Safely
+
+Before changing repository visibility:
+
+```bash
+git status --short
+git diff --cached --name-only
+rg -n "gmail.com|Downloads|client_secret|refresh_token|access_token|BEGIN PRIVATE|local private path" .
+```
+
+Then inspect any media that would be committed:
+
+```bash
+git ls-files public
+```
+
+The current policy is: publish source, sanitized assets, and docs; keep private videos, screenshots, databases, logs, and generated identity artifacts local.
+
+To distribute a public version, generate a sanitized mirror instead of flipping this private working repo public:
+
+```bash
+npm run public:export -- C:/tmp/gmail-workspace-public
+```
+
+See [docs/public-distribution.md](docs/public-distribution.md).
