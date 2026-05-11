@@ -72,13 +72,13 @@ For this repo, the older workspace had many similar surfaces: Today, Inbox, Brie
 7. Remove KPIs unless the page is explicitly an analytics page.
 8. Show pinned context when ranking depends on user artifacts.
 9. Show evidence beside the selected item: fit reason, public research status, calendar suggestion, and privacy boundary.
-10. Keep the agent as a contextual drawer, not a permanent third dashboard column.
+10. Use a persistent right-side agent rail on desktop, but keep it contextual and collapsible.
 
 ## Agent Chat Pattern
 
-The agent chat panel should be useful without making the page feel like a chat app.
+The agent chat panel should be useful without making the page feel like a generic chat app.
 
-Use a compact drawer for triage surfaces:
+For desktop agent-native workspaces, use a full right-side rail. For tablet/mobile, collapse it into a drawer.
 
 ```text
 selected queue row
@@ -142,7 +142,7 @@ Many private inflows
 -> Now / Prep / Batch / Later filters
 -> pinned-context fit reasons
 -> selected detail card
--> compact agent drawer
+-> right-side agent rail
 -> synthetic public artifact
 ```
 

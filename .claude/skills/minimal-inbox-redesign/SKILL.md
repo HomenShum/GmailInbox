@@ -23,7 +23,7 @@ Prefer:
 - one next-best-action over many KPIs
 - a small number of durable states over many tabs
 - a command/search affordance over visible button sprawl
-- a contextual agent drawer over a permanent chat column
+- a persistent right-side agent rail on desktop, collapsed drawer on smaller screens
 - public-safe demo data over screenshots from private accounts
 - evidence-backed design references over taste-only redesigns
 
@@ -110,7 +110,7 @@ Required elements:
 - a small filter set such as `All / Now / Prep / Batch / Later`
 - visible pinned context when ranking depends on user artifacts
 - selected-row proof, such as fit reasons, public research status, calendar suggestion, and privacy boundary
-- a compact agent drawer that can explain the selected row, draft a reply, plan booking, or produce a research checklist
+- a right-side agent rail that can explain the selected row, draft a reply, plan booking, or produce a research checklist
 
 Do not include:
 
@@ -122,9 +122,9 @@ Do not include:
 
 ## Agent Panel Rule
 
-Include the agent when it makes the current decision easier. Do not give it a full-height permanent column unless chat is the main product surface.
+Include the agent when it makes the current decision easier. For modern agent-native desktop apps, use a persistent right-side rail. On smaller screens, collapse it into a drawer.
 
-For triage views, use a compact contextual drawer:
+The right rail must remain contextual, not generic chat:
 
 ```text
 selected row -> pinned context + proof -> agent suggestion -> human action
@@ -137,6 +137,7 @@ The drawer should:
 - offer a few concrete commands, not an open-ended wall of prompts
 - keep private data boundaries visible
 - stop at draft, booking suggestion, research checklist, or explanation unless the product has explicit send/schedule approval
+- be collapsible so the main queue can reclaim width when needed
 
 ## Phase 5 - Sanitize For Public Release
 
@@ -225,7 +226,7 @@ Process:
 4. Collapse the workflow into Now / Prep / Batch / Later.
 5. Redesign as one ranked queue with one next-best-action.
 6. Add selected-row proof: pinned match, public research, calendar suggestion, and privacy boundary.
-7. Add a compact contextual agent drawer for explain/draft/book/research commands.
+7. Add a persistent right-side agent rail for desktop, with collapsed drawer behavior on smaller screens.
 8. Sanitize all private data for public sharing.
 9. Verify load, filters, search, detail updates, agent drawer updates, and privacy scan.
 10. Update README with the artifact, preview, and method.

@@ -42,6 +42,10 @@
     .shell {
       min-height: 100vh;
       display: grid;
+      grid-template-columns: 280px minmax(0, 1fr) 380px;
+    }
+
+    .shell.agent-closed {
       grid-template-columns: 280px minmax(0, 1fr);
     }
 
@@ -688,6 +692,7 @@
     }
 
     .agent-toggle {
+      display: none;
       position: fixed;
       right: 22px;
       bottom: 22px;
@@ -705,24 +710,26 @@
     }
 
     .agent-panel {
-      position: fixed;
-      right: 22px;
-      bottom: 74px;
-      z-index: 19;
-      width: min(390px, calc(100vw - 44px));
-      max-height: min(560px, calc(100vh - 110px));
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      width: auto;
+      height: 100vh;
+      max-height: 100vh;
       display: flex;
       flex-direction: column;
-      border: 1px solid var(--line);
-      border-radius: 22px;
+      border-left: 1px solid var(--line);
       background: rgba(255, 253, 249, .96);
-      box-shadow: 0 24px 80px rgba(40, 34, 24, .18);
       overflow: hidden;
       backdrop-filter: blur(18px);
     }
 
     .agent-panel.collapsed {
       display: none;
+    }
+
+    .shell.agent-closed .agent-toggle {
+      display: block;
     }
 
     .agent-head {
@@ -764,6 +771,7 @@
       padding: 14px 16px 16px;
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 13px;
+      flex: 1;
     }
 
     .agent-message {
@@ -896,7 +904,10 @@
     }
 
     @media (max-width: 1180px) {
-      .shell { grid-template-columns: 1fr; }
+      .shell,
+      .shell.agent-closed {
+        grid-template-columns: 1fr;
+      }
       .rail {
         border-right: 0;
         border-bottom: 1px solid var(--line);
@@ -908,6 +919,22 @@
       .row .next { grid-column: 3; }
       .detail-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .archive-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .agent-panel {
+        position: fixed;
+        right: 16px;
+        bottom: 74px;
+        top: auto;
+        z-index: 19;
+        width: min(390px, calc(100vw - 32px));
+        height: auto;
+        max-height: min(560px, calc(100vh - 110px));
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        box-shadow: 0 24px 80px rgba(40, 34, 24, .18);
+      }
+      .agent-toggle {
+        display: block;
+      }
     }
 
     @media (max-width: 780px) {
@@ -936,7 +963,7 @@
   </style>
 </head>
 <body>
-  <div class="shell">
+  <div class="shell" id="appShell">
     <aside class="rail">
       <section class="brand">
         <div class="kicker">Career Ops</div>
@@ -1019,23 +1046,23 @@
         Design reference used: Things-style Today focus, Superhuman-style triage, Linear-style command/list workflow, and public Claude/Garden design skills emphasizing intentional restraint and verified visual polish.
       </section>
     </main>
-  </div>
 
-  <aside class="agent-panel" id="agentPanel" aria-label="Agent chat panel">
-    <div class="agent-head">
-      <div>
-        <strong>Agent</strong>
-        <span id="agentContext">Using selected row + pinned context</span>
+    <aside class="agent-panel" id="agentPanel" aria-label="Agent chat panel">
+      <div class="agent-head">
+        <div>
+          <strong>Agent</strong>
+          <span id="agentContext">Using selected row + pinned context</span>
+        </div>
+        <button class="agent-close" id="agentClose" type="button" aria-label="Close agent">×</button>
       </div>
-      <button class="agent-close" id="agentClose" type="button" aria-label="Close agent">×</button>
-    </div>
-    <div class="agent-body" id="agentBody"></div>
-    <div class="agent-input">
-      <input id="agentInput" placeholder="Ask about the selected job..." />
-      <button id="agentSend" type="button">Ask</button>
-    </div>
-  </aside>
-  <button class="agent-toggle" id="agentToggle" type="button">Agent</button>
+      <div class="agent-body" id="agentBody"></div>
+      <div class="agent-input">
+        <input id="agentInput" placeholder="Ask about the selected job..." />
+        <button id="agentSend" type="button">Ask</button>
+      </div>
+    </aside>
+    <button class="agent-toggle" id="agentToggle" type="button">Agent</button>
+  </div>
 
   <script>
     const pinnedContext = [
@@ -1123,6 +1150,7 @@
 
     let activeFilter = "all";
     let activeRow = rows[0];
+    const appShell = document.getElementById("appShell");
     const queue = document.getElementById("queue");
     const detail = document.getElementById("detail");
     const search = document.getElementById("search");
@@ -1368,10 +1396,12 @@
     search.addEventListener("input", renderQueue);
     document.getElementById("agentToggle").addEventListener("click", () => {
       agentPanel.classList.toggle("collapsed");
+      appShell.classList.toggle("agent-closed", agentPanel.classList.contains("collapsed"));
       renderAgent();
     });
     document.getElementById("agentClose").addEventListener("click", () => {
       agentPanel.classList.add("collapsed");
+      appShell.classList.add("agent-closed");
     });
     document.getElementById("agentSend").addEventListener("click", () => {
       const prompt = agentInput.value.trim() || "Explain the selected row";
@@ -1390,6 +1420,7 @@
       if (!modeButton) return;
       const mode = modeButton.dataset.agentMode || modeButton.dataset.agentOpen || "rank";
       agentPanel.classList.remove("collapsed");
+      appShell.classList.remove("agent-closed");
       renderAgent(mode);
     });
     document.addEventListener("keydown", (event) => {
@@ -1402,6 +1433,10 @@
     renderSweeps();
     renderQueue();
     renderAgent();
+    if (window.matchMedia("(max-width: 1180px)").matches) {
+      agentPanel.classList.add("collapsed");
+      appShell.classList.add("agent-closed");
+    }
   </script>
 </body>
 </html>
