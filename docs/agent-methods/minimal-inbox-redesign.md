@@ -83,14 +83,14 @@ For desktop agent-native workspaces, use a full right-side rail. For tablet/mobi
 The design philosophy is:
 
 ```text
-focus first
-proof second
-action third
-trace on demand
+chat first
+context compact
+actions nearby
+proof on demand
 permission always visible
 ```
 
-This means the right rail should not expose every internal artifact as separate always-open cards. The first view should show the selected object, the readiness state, and the next command. Longer reasoning, tool trace, and missing evidence can be expanded when the user wants to audit the recommendation.
+This means the right rail should not expose every internal artifact as separate always-open cards. The first view should show the selected object, a few short action commands, a usable conversation thread, and the composer. Longer readiness, tool trace, and missing evidence can be expanded when the user wants to audit the recommendation.
 
 ```text
 selected queue row
@@ -104,13 +104,11 @@ For a premium desktop rail, structure it as:
 
 ```text
 header: active object + local-first status
-selected card: score + next action
-readiness: fit / proof / time / guardrail
-commands: draft, explain, book, research
-reasoning: current mode output
-disclosures: tool trace + missing evidence
-sources: context boundary
-composer: short prompt input
+compact context strip: selected object + score + next action
+quick actions: draft / explain / verify
+chat thread: primary answer and follow-up messages
+inspect-context drawer: readiness / proof / trace / missing evidence / boundary
+sticky composer: short prompt input
 ```
 
 The rail should answer:

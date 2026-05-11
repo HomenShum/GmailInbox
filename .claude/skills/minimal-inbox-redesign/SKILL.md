@@ -124,13 +124,13 @@ Do not include:
 
 Include the agent when it makes the current decision easier. For modern agent-native desktop apps, use a persistent right-side rail. On smaller screens, collapse it into a drawer.
 
-The philosophy is not "chat on the side." The rail is a decision cockpit:
+The philosophy is not "dump all context on the side." The rail is chat with context:
 
-- one recommendation, then proof
+- one compact selected object
 - one active object, never a generic assistant state
-- visible readiness before an action
-- action commands before long reasoning
-- deeper trace and missing evidence behind disclosure
+- a real conversation area visible without scrolling
+- short action commands near the top
+- proof, readiness, trace, and missing evidence behind disclosure
 - explicit permission boundary before any send, schedule, archive, or external research write
 
 The right rail must remain contextual, not generic chat:
@@ -139,23 +139,21 @@ The right rail must remain contextual, not generic chat:
 selected row -> pinned context + proof -> agent suggestion -> human action
 ```
 
-The rail should read as an agent command surface, not a chat transcript. Give it this anatomy:
+The rail should read as a chat surface with compact decision context. Give it this anatomy:
 
 ```text
 rail header with active object
--> selected opportunity/card with score + next action
--> readiness view for fit, proof, time, and guardrail
--> one-click action dock
--> reasoning section for the current mode
--> disclosed trace and missing-evidence details
--> sources/privacy boundary
--> compact composer
+-> compact selected context strip
+-> quick action row
+-> visible chat thread
+-> collapsed inspect-context drawer for readiness, proof, trace, missing gaps, and permission boundary
+-> sticky compact composer
 ```
 
 The rail should:
 
 - update when the selected row changes
-- show which context it is using
+- show which context it is using without consuming the entire panel
 - offer concrete commands, not an open-ended wall of prompts
 - detect common prompt intent such as draft, book, schedule, research, verify, and explain
 - keep private data boundaries visible
