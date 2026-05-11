@@ -144,10 +144,12 @@ The rail should read as a chat surface with compact decision context. Give it th
 ```text
 rail header with active object
 -> compact selected context strip
+-> mode/model/tool state chips
 -> quick action row
 -> visible chat thread
+-> source chips, response actions, and collapsible reasoning inside messages
 -> collapsed inspect-context drawer for readiness, proof, trace, missing gaps, and permission boundary
--> sticky compact composer
+-> suggested prompt chips + sticky compact composer
 ```
 
 The rail should:
@@ -156,6 +158,9 @@ The rail should:
 - show which context it is using without consuming the entire panel
 - offer concrete commands, not an open-ended wall of prompts
 - detect common prompt intent such as draft, book, schedule, research, verify, and explain
+- expose model/mode/tool state in compact chips
+- put sources, response actions, and reasoning controls inside the message they belong to
+- keep suggestions close to the composer, not as large cards in the content stream
 - keep private data boundaries visible
 - stop at draft, booking suggestion, research checklist, or explanation unless the product has explicit send/schedule approval
 - be collapsible so the main queue can reclaim width when needed

@@ -105,11 +105,19 @@ For a premium desktop rail, structure it as:
 ```text
 header: active object + local-first status
 compact context strip: selected object + score + next action
+mode state: mode / model / tool activity chips
 quick actions: draft / explain / verify
-chat thread: primary answer and follow-up messages
+chat thread: primary answer, follow-up messages, source chips, message actions, collapsible reasoning
 inspect-context drawer: readiness / proof / trace / missing evidence / boundary
-sticky composer: short prompt input
+sticky composer: suggested prompt chips + short prompt input
 ```
+
+The inspiration is a blended pattern:
+
+- ChatGPT-style agent surfaces make tool/app access and approval boundaries visible.
+- Claude-style artifact thinking keeps the conversation separate from heavier context.
+- Cursor-style agent mode indicators keep tool state legible for power users.
+- Vercel AI Elements-style primitives map well to message, tool, reasoning, source, action, suggestion, and prompt-input regions.
 
 The rail should answer:
 

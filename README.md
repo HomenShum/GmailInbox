@@ -26,7 +26,7 @@ The latest public-safe artifact is a deliberately simplified career-inbox interf
 - daily sweeps visible in the rail
 - simple `Now`, `Prep`, `Batch`, and `Later` filters
 - `Cmd/Ctrl+K` search for person, company, or action
-- a full-height right-side chat rail: compact selected context, quick actions, real conversation space, collapsed proof drawer, explicit permission boundary, and sticky composer
+- a full-height right-side chat rail: compact selected context, mode/model/tool state, quick actions, message sources/actions/reasoning, collapsed proof drawer, suggested prompts, explicit permission boundary, and sticky composer
 
 Open the standalone demo:
 
