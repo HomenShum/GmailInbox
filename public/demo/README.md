@@ -37,3 +37,8 @@ Do not commit screenshots, GIFs, or videos captured from a real Gmail account un
 - `today-queue-preview.png` - README preview image for the Today Queue demo.
 
 All names, company details, and message content in this demo are synthetic/anonymized.
+
+Related agent methodology:
+
+- `../../.claude/skills/minimal-inbox-redesign/SKILL.md`
+- `../../docs/agent-methods/minimal-inbox-redesign.md`

@@ -19,7 +19,11 @@ src/data/.token-key
 playwright-report/
 test-results/
 exact_parity_UI_reference/
-.claude/
+.claude/*
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/minimal-inbox-redesign/
+!.claude/skills/minimal-inbox-redesign/SKILL.md
 snapshots/
 scripts/output/
 NUL

@@ -37,6 +37,17 @@ Privacy note: the demo uses synthetic/anonymized names, companies, and messages.
   <img src="https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/today-queue-preview.png" alt="Today Queue minimal inbox triage demo" width="960" />
 </p>
 
+### Agent Method / Redesign Skill
+
+This repo includes a dedicated agent playbook for reproducing the meta-research and redesign process:
+
+- Skill: [`.claude/skills/minimal-inbox-redesign/SKILL.md`](.claude/skills/minimal-inbox-redesign/SKILL.md)
+- Agent entry point: [`AGENTS.md`](AGENTS.md)
+- Method note: [`docs/agent-methods/minimal-inbox-redesign.md`](docs/agent-methods/minimal-inbox-redesign.md)
+- Demo artifact: [`public/demo/today-queue.html`](public/demo/today-queue.html)
+
+Claude Code can load the skill directly. Codex, Cursor, Windsurf, and other agents can read the same `SKILL.md` as a portable methodology: inspect the current UI, research comparable interaction patterns, collapse the workflow into `Now / Prep / Batch / Later`, produce a synthetic public artifact, and verify both UX and privacy before publishing.
+
 ### Gmail Magic Resend / Reply QA
 
 <p>
