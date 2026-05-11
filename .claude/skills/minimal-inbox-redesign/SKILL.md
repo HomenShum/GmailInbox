@@ -23,6 +23,7 @@ Prefer:
 - one next-best-action over many KPIs
 - a small number of durable states over many tabs
 - a command/search affordance over visible button sprawl
+- a contextual agent drawer over a permanent chat column
 - public-safe demo data over screenshots from private accounts
 - evidence-backed design references over taste-only redesigns
 
@@ -107,6 +108,9 @@ Required elements:
 - one visible daily sweep/history area
 - one search box or command affordance
 - a small filter set such as `All / Now / Prep / Batch / Later`
+- visible pinned context when ranking depends on user artifacts
+- selected-row proof, such as fit reasons, public research status, calendar suggestion, and privacy boundary
+- a compact agent drawer that can explain the selected row, draft a reply, plan booking, or produce a research checklist
 
 Do not include:
 
@@ -115,6 +119,24 @@ Do not include:
 - multiple charts on a triage surface
 - generic productivity copy
 - real private names/messages in a public artifact
+
+## Agent Panel Rule
+
+Include the agent when it makes the current decision easier. Do not give it a full-height permanent column unless chat is the main product surface.
+
+For triage views, use a compact contextual drawer:
+
+```text
+selected row -> pinned context + proof -> agent suggestion -> human action
+```
+
+The drawer should:
+
+- update when the selected row changes
+- show which context it is using
+- offer a few concrete commands, not an open-ended wall of prompts
+- keep private data boundaries visible
+- stop at draft, booking suggestion, research checklist, or explanation unless the product has explicit send/schedule approval
 
 ## Phase 5 - Sanitize For Public Release
 
@@ -164,6 +186,7 @@ Check:
 - filters work
 - search works
 - selected detail updates
+- agent drawer updates from selected row and action buttons
 - text does not clip on the target viewport
 - no private strings remain
 
@@ -201,9 +224,11 @@ Process:
 3. Research 3-5 relevant interface patterns.
 4. Collapse the workflow into Now / Prep / Batch / Later.
 5. Redesign as one ranked queue with one next-best-action.
-6. Sanitize all private data for public sharing.
-7. Verify load, filters, search, detail updates, and privacy scan.
-8. Update README with the artifact, preview, and method.
+6. Add selected-row proof: pinned match, public research, calendar suggestion, and privacy boundary.
+7. Add a compact contextual agent drawer for explain/draft/book/research commands.
+8. Sanitize all private data for public sharing.
+9. Verify load, filters, search, detail updates, agent drawer updates, and privacy scan.
+10. Update README with the artifact, preview, and method.
 ```
 
 ## Quality Bar
@@ -215,5 +240,6 @@ The redesign is successful when a user can answer these in under ten seconds:
 3. What is worth researching?
 4. What can be batch-processed?
 5. What happened in prior daily sweeps?
+6. Why did the agent rank this item here, and what evidence is missing?
 
 If the user still has to interpret a dashboard, the redesign is not done.

@@ -70,6 +70,33 @@ For this repo, the older workspace had many similar surfaces: Today, Inbox, Brie
 5. Put detail on selection, not as default page clutter.
 6. Preserve negative space around the current focus.
 7. Remove KPIs unless the page is explicitly an analytics page.
+8. Show pinned context when ranking depends on user artifacts.
+9. Show evidence beside the selected item: fit reason, public research status, calendar suggestion, and privacy boundary.
+10. Keep the agent as a contextual drawer, not a permanent third dashboard column.
+
+## Agent Chat Pattern
+
+The agent chat panel should be useful without making the page feel like a chat app.
+
+Use a compact drawer for triage surfaces:
+
+```text
+selected queue row
+-> active pinned context
+-> public research proof
+-> agent suggestion
+-> explicit human action
+```
+
+The drawer should answer:
+
+- Why is this ranked here?
+- What evidence is missing?
+- What reply would be safe to draft?
+- What booking or prep block should be suggested?
+- What should be deferred?
+
+The drawer should not auto-send email, auto-book calendar events, or expose raw private text in a public demo.
 
 ## Privacy Boundary
 
@@ -113,7 +140,9 @@ Many private inflows
 -> daily sweep snapshots
 -> ranked career/action queue
 -> Now / Prep / Batch / Later filters
+-> pinned-context fit reasons
 -> selected detail card
+-> compact agent drawer
 -> synthetic public artifact
 ```
 

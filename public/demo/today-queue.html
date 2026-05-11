@@ -687,6 +687,157 @@
       color: var(--ink);
     }
 
+    .agent-toggle {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 20;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--surface);
+      padding: 11px 15px;
+      box-shadow: 0 18px 50px rgba(40, 34, 24, .18);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .agent-panel {
+      position: fixed;
+      right: 22px;
+      bottom: 74px;
+      z-index: 19;
+      width: min(390px, calc(100vw - 44px));
+      max-height: min(560px, calc(100vh - 110px));
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255, 253, 249, .96);
+      box-shadow: 0 24px 80px rgba(40, 34, 24, .18);
+      overflow: hidden;
+      backdrop-filter: blur(18px);
+    }
+
+    .agent-panel.collapsed {
+      display: none;
+    }
+
+    .agent-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--line);
+      padding: 14px 16px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .agent-head strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .agent-head span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .agent-close {
+      border: 0;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--muted);
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+    }
+
+    .agent-body {
+      display: grid;
+      gap: 12px;
+      overflow: auto;
+      padding: 14px 16px 16px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+    }
+
+    .agent-message {
+      border-radius: 16px;
+      padding: 12px;
+      line-height: 1.45;
+    }
+
+    .agent-message.user {
+      background: var(--surface-2);
+      color: var(--ink);
+    }
+
+    .agent-message.agent {
+      background: #f4f7ff;
+      color: var(--ink);
+      border: 1px solid #dfe7ff;
+    }
+
+    .agent-message strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .agent-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .agent-tool {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--ink);
+      padding: 7px 9px;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .agent-input {
+      display: flex;
+      gap: 8px;
+      border-top: 1px solid var(--line);
+      padding: 12px;
+      background: var(--surface);
+    }
+
+    .agent-input input {
+      flex: 1;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface-2);
+      padding: 10px 12px;
+      color: var(--ink);
+      outline: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+    }
+
+    .agent-input button {
+      border: 0;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--surface);
+      padding: 0 13px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
     .archive {
       margin-top: 42px;
       border-top: 1px solid var(--line);
@@ -772,6 +923,15 @@
       .detail { padding-left: 18px; }
       .detail-grid { grid-template-columns: 1fr; }
       .archive-grid { grid-template-columns: 1fr; }
+      .agent-panel {
+        right: 12px;
+        bottom: 68px;
+        width: calc(100vw - 24px);
+      }
+      .agent-toggle {
+        right: 12px;
+        bottom: 12px;
+      }
     }
   </style>
 </head>
@@ -860,6 +1020,22 @@
       </section>
     </main>
   </div>
+
+  <aside class="agent-panel" id="agentPanel" aria-label="Agent chat panel">
+    <div class="agent-head">
+      <div>
+        <strong>Agent</strong>
+        <span id="agentContext">Using selected row + pinned context</span>
+      </div>
+      <button class="agent-close" id="agentClose" type="button" aria-label="Close agent">×</button>
+    </div>
+    <div class="agent-body" id="agentBody"></div>
+    <div class="agent-input">
+      <input id="agentInput" placeholder="Ask about the selected job..." />
+      <button id="agentSend" type="button">Ask</button>
+    </div>
+  </aside>
+  <button class="agent-toggle" id="agentToggle" type="button">Agent</button>
 
   <script>
     const pinnedContext = [
@@ -950,6 +1126,10 @@
     const queue = document.getElementById("queue");
     const detail = document.getElementById("detail");
     const search = document.getElementById("search");
+    const agentPanel = document.getElementById("agentPanel");
+    const agentBody = document.getElementById("agentBody");
+    const agentInput = document.getElementById("agentInput");
+    const agentContext = document.getElementById("agentContext");
 
     function priorityText(p) {
       if (p === "p0") return "Now";
@@ -1004,6 +1184,42 @@
       return "No calendar block";
     }
 
+    function agentAnswer(row, mode = "rank") {
+      const proof = proofFor(row);
+      const matches = matchesFor(row).join(", ");
+      if (mode === "draft") {
+        return `Draft reply: Thanks for reaching out. This looks relevant to my work around ${matches}. Could you share the company stage, role scope, expected interview process, and compensation range so I can confirm fit before scheduling?`;
+      }
+      if (mode === "book") {
+        return `${calendarFor(row)}. Keep the message short, offer one primary slot and one backup, then move the item to waiting.`;
+      }
+      if (mode === "research") {
+        return `Research checklist: resolve ${proof.company}, verify public traction, inspect role level, identify interview loop, and list missing evidence before drafting.`;
+      }
+      return `${row.person} is ranked here because it is ${priorityText(row.p).toLowerCase()}, matches ${matches}, and the next action is concrete: ${row.next}`;
+    }
+
+    function renderAgent(mode = "rank") {
+      const proof = proofFor(activeRow);
+      agentContext.textContent = `${activeRow.person} / ${priorityText(activeRow.p)} / ${proof.status}`;
+      agentBody.innerHTML = `
+        <div class="agent-message user">
+          <strong>Selected context</strong>
+          ${activeRow.person} · ${activeRow.context}
+        </div>
+        <div class="agent-message agent">
+          <strong>Recommended move</strong>
+          ${agentAnswer(activeRow, mode)}
+        </div>
+        <div class="agent-tools">
+          <button class="agent-tool" data-agent-mode="rank" type="button">Explain rank</button>
+          <button class="agent-tool" data-agent-mode="draft" type="button">Draft reply</button>
+          <button class="agent-tool" data-agent-mode="book" type="button">Plan booking</button>
+          <button class="agent-tool" data-agent-mode="research" type="button">Research checklist</button>
+        </div>
+      `;
+    }
+
     function rowMatches(row) {
       const q = search.value.trim().toLowerCase();
       const filterOk = activeFilter === "all" || row.p === activeFilter || row.group === activeFilter;
@@ -1041,6 +1257,7 @@
           activeRow = row;
           renderQueue();
           renderDetail();
+          renderAgent();
         });
         queue.appendChild(button);
       });
@@ -1085,11 +1302,11 @@
           </article>
         </div>
         <div class="detail-actions">
-          <button class="detail-action primary" type="button">Read</button>
-          <button class="detail-action" type="button">Draft reply</button>
-          <button class="detail-action" type="button">Book</button>
-          <button class="detail-action" type="button">Research</button>
-          <button class="detail-action" type="button">Defer</button>
+          <button class="detail-action primary" data-agent-open="rank" type="button">Read</button>
+          <button class="detail-action" data-agent-open="draft" type="button">Draft reply</button>
+          <button class="detail-action" data-agent-open="book" type="button">Book</button>
+          <button class="detail-action" data-agent-open="research" type="button">Research</button>
+          <button class="detail-action" data-agent-open="rank" type="button">Defer</button>
         </div>
         <div class="agent-footer">
           <strong>Agent command:</strong> "Using my pinned context and public research, explain why this is ranked here, draft the safest next reply, and tell me what evidence is missing."
@@ -1149,6 +1366,32 @@
     });
 
     search.addEventListener("input", renderQueue);
+    document.getElementById("agentToggle").addEventListener("click", () => {
+      agentPanel.classList.toggle("collapsed");
+      renderAgent();
+    });
+    document.getElementById("agentClose").addEventListener("click", () => {
+      agentPanel.classList.add("collapsed");
+    });
+    document.getElementById("agentSend").addEventListener("click", () => {
+      const prompt = agentInput.value.trim() || "Explain the selected row";
+      agentBody.insertAdjacentHTML("beforeend", `
+        <div class="agent-message user"><strong>You</strong>${prompt}</div>
+        <div class="agent-message agent"><strong>Agent</strong>${agentAnswer(activeRow, "rank")}</div>
+      `);
+      agentInput.value = "";
+      agentBody.scrollTop = agentBody.scrollHeight;
+    });
+    agentInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") document.getElementById("agentSend").click();
+    });
+    document.addEventListener("click", (event) => {
+      const modeButton = event.target.closest("[data-agent-mode], [data-agent-open]");
+      if (!modeButton) return;
+      const mode = modeButton.dataset.agentMode || modeButton.dataset.agentOpen || "rank";
+      agentPanel.classList.remove("collapsed");
+      renderAgent(mode);
+    });
     document.addEventListener("keydown", (event) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
@@ -1158,6 +1401,7 @@
 
     renderSweeps();
     renderQueue();
+    renderAgent();
   </script>
 </body>
 </html>

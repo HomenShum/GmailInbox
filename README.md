@@ -26,6 +26,7 @@ The latest public-safe artifact is a deliberately simplified career-inbox interf
 - daily sweeps visible in the rail
 - simple `Now`, `Prep`, `Batch`, and `Later` filters
 - `Cmd/Ctrl+K` search for person, company, or action
+- pinned-context fit reasons, NodeBench proof, calendar preview, and a compact contextual agent drawer
 
 Open the standalone demo:
 
