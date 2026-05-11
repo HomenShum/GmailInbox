@@ -130,11 +130,26 @@ The right rail must remain contextual, not generic chat:
 selected row -> pinned context + proof -> agent suggestion -> human action
 ```
 
-The drawer should:
+The rail should read as an agent command surface, not a chat transcript. Give it this anatomy:
+
+```text
+rail header with active object
+-> selected opportunity/card with score + next action
+-> evidence map for pinned context, public proof, calendar, and approval state
+-> reasoning section for the current mode
+-> tool trace showing what was checked
+-> missing-evidence warning
+-> one-click commands
+-> sources/privacy boundary
+-> compact composer
+```
+
+The rail should:
 
 - update when the selected row changes
 - show which context it is using
-- offer a few concrete commands, not an open-ended wall of prompts
+- offer concrete commands, not an open-ended wall of prompts
+- detect common prompt intent such as draft, book, schedule, research, verify, and explain
 - keep private data boundaries visible
 - stop at draft, booking suggestion, research checklist, or explanation unless the product has explicit send/schedule approval
 - be collapsible so the main queue can reclaim width when needed

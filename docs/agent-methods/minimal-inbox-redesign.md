@@ -76,7 +76,7 @@ For this repo, the older workspace had many similar surfaces: Today, Inbox, Brie
 
 ## Agent Chat Pattern
 
-The agent chat panel should be useful without making the page feel like a generic chat app.
+The agent panel should be useful without making the page feel like a generic chat app.
 
 For desktop agent-native workspaces, use a full right-side rail. For tablet/mobile, collapse it into a drawer.
 
@@ -88,12 +88,28 @@ selected queue row
 -> explicit human action
 ```
 
-The drawer should answer:
+For a premium desktop rail, structure it as:
+
+```text
+header: active object + local-first status
+selected card: score + next action
+evidence map: pinned files / public proof / calendar / approval state
+reasoning: current mode output
+tool trace: checks performed
+missing evidence: what blocks a confident action
+commands: draft, explain, book, research
+sources: context boundary
+composer: short prompt input
+```
+
+The rail should answer:
 
 - Why is this ranked here?
 - What evidence is missing?
 - What reply would be safe to draft?
 - What booking or prep block should be suggested?
+
+It should also infer simple prompt intent. If the user types "draft", answer with a draft. If they type "book", "schedule", or "calendar", answer with a booking plan. If they type "research", "background", "verify", or "source", answer with the verification checklist.
 - What should be deferred?
 
 The drawer should not auto-send email, auto-book calendar events, or expose raw private text in a public demo.

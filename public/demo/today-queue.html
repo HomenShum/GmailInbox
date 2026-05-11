@@ -738,8 +738,12 @@
       justify-content: space-between;
       gap: 12px;
       border-bottom: 1px solid var(--line);
-      padding: 14px 16px;
+      padding: 16px;
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .agent-title {
+      min-width: 0;
     }
 
     .agent-head strong {
@@ -752,6 +756,32 @@
       margin-top: 2px;
       color: var(--muted);
       font-size: 11px;
+    }
+
+    .agent-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: fit-content;
+      margin-bottom: 7px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--muted);
+      padding: 4px 8px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+    }
+
+    .agent-status:before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 3px rgba(15, 122, 79, .12);
     }
 
     .agent-close {
@@ -772,6 +802,180 @@
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 13px;
       flex: 1;
+    }
+
+    .agent-section {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+      padding: 13px;
+      box-shadow: 0 12px 34px rgba(40, 34, 24, .045);
+    }
+
+    .agent-section.primary {
+      background: #f7f4ff;
+      border-color: #ddd4ff;
+    }
+
+    .agent-section.warning {
+      background: #fff8e8;
+      border-color: #f2dfb9;
+    }
+
+    .agent-section-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .agent-kicker {
+      color: var(--faint);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .agent-section h3 {
+      margin: 3px 0 0;
+      font-size: 16px;
+      line-height: 1.18;
+      letter-spacing: -.03em;
+    }
+
+    .agent-score {
+      flex-shrink: 0;
+      border-radius: 12px;
+      background: var(--ink);
+      color: var(--surface);
+      padding: 8px 9px;
+      text-align: center;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .agent-score small {
+      display: block;
+      margin-top: 3px;
+      color: rgba(255, 253, 249, .76);
+      font-size: 9px;
+      text-transform: uppercase;
+    }
+
+    .agent-copy {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .agent-next {
+      margin-top: 11px;
+      border-radius: 14px;
+      background: rgba(255, 253, 249, .74);
+      padding: 11px;
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.42;
+    }
+
+    .agent-next strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .agent-context-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .agent-context-card {
+      border-radius: 13px;
+      background: var(--surface-2);
+      padding: 10px;
+      min-height: 74px;
+    }
+
+    .agent-context-card strong {
+      display: block;
+      font-size: 12px;
+      line-height: 1.2;
+    }
+
+    .agent-context-card span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .agent-context-card em {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 8px;
+      border-radius: 999px;
+      background: rgba(15, 122, 79, .1);
+      color: var(--green);
+      padding: 3px 7px;
+      font-style: normal;
+      font-size: 9px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .agent-trace {
+      display: grid;
+      gap: 8px;
+    }
+
+    .trace-row {
+      display: grid;
+      grid-template-columns: 18px 1fr auto;
+      gap: 9px;
+      align-items: start;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .trace-dot {
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: #eaf8f0;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .trace-dot.open {
+      background: #fff2cf;
+      color: var(--orange);
+    }
+
+    .trace-dot.wait {
+      background: #eef2ff;
+      color: var(--purple);
+    }
+
+    .trace-row strong {
+      display: block;
+      color: var(--ink);
+      font-size: 12px;
+    }
+
+    .trace-row em {
+      color: var(--faint);
+      font-style: normal;
+      font-size: 10px;
+      text-transform: uppercase;
     }
 
     .agent-message {
@@ -796,29 +1000,73 @@
       margin-bottom: 5px;
     }
 
-    .agent-tools {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
+    .agent-command-list {
+      display: grid;
+      gap: 8px;
     }
 
-    .agent-tool {
+    .agent-command {
       border: 1px solid var(--line);
-      border-radius: 999px;
+      border-radius: 13px;
       background: var(--surface);
+      padding: 10px;
       color: var(--ink);
-      padding: 7px 9px;
-      font-size: 11px;
-      font-weight: 800;
       cursor: pointer;
+      text-align: left;
+    }
+
+    .agent-command strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 12px;
+    }
+
+    .agent-command span {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.3;
+    }
+
+    .agent-command:hover {
+      background: #fffaf1;
+    }
+
+    .agent-command.primary {
+      border-color: #d6ccff;
+      background: #f5f1ff;
+    }
+
+    .agent-source-list {
+      display: grid;
+      gap: 7px;
+      margin-top: 9px;
+    }
+
+    .agent-source {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      border-radius: 12px;
+      background: var(--surface-2);
+      padding: 9px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.3;
+    }
+
+    .agent-source strong {
+      color: var(--ink);
     }
 
     .agent-input {
-      display: flex;
-      gap: 8px;
       border-top: 1px solid var(--line);
       padding: 12px;
       background: var(--surface);
+    }
+
+    .agent-input-row {
+      display: flex;
+      gap: 8px;
     }
 
     .agent-input input {
@@ -844,6 +1092,14 @@
       font-size: 12px;
       font-weight: 800;
       cursor: pointer;
+    }
+
+    .agent-hint {
+      margin: 8px 2px 0;
+      color: var(--faint);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 10px;
+      line-height: 1.35;
     }
 
     .archive {
@@ -1049,7 +1305,8 @@
 
     <aside class="agent-panel" id="agentPanel" aria-label="Agent chat panel">
       <div class="agent-head">
-        <div>
+        <div class="agent-title">
+          <span class="agent-status">Local first</span>
           <strong>Agent</strong>
           <span id="agentContext">Using selected row + pinned context</span>
         </div>
@@ -1057,8 +1314,11 @@
       </div>
       <div class="agent-body" id="agentBody"></div>
       <div class="agent-input">
-        <input id="agentInput" placeholder="Ask about the selected job..." />
-        <button id="agentSend" type="button">Ask</button>
+        <div class="agent-input-row">
+          <input id="agentInput" placeholder="Ask about the selected job..." />
+          <button id="agentSend" type="button">Ask</button>
+        </div>
+        <div class="agent-hint">Demo mode: drafts and calendar changes stop at human approval. No raw private email or resume text is sent externally.</div>
       </div>
     </aside>
     <button class="agent-toggle" id="agentToggle" type="button">Agent</button>
@@ -1227,23 +1487,171 @@
       return `${row.person} is ranked here because it is ${priorityText(row.p).toLowerCase()}, matches ${matches}, and the next action is concrete: ${row.next}`;
     }
 
+    function shortActionFor(row) {
+      if (row.group === "book") return "Confirm time, then move to waiting.";
+      if (row.group === "research") return "Research company, then draft.";
+      if (row.group === "batch") return "Send a filter reply only.";
+      return "Defer and keep the queue clean.";
+    }
+
+    function modeTitle(mode) {
+      if (mode === "draft") return "Reply draft";
+      if (mode === "book") return "Booking plan";
+      if (mode === "research") return "Research checklist";
+      return "Recommended move";
+    }
+
+    function inferMode(prompt) {
+      const text = prompt.toLowerCase();
+      if (text.includes("draft") || text.includes("reply") || text.includes("respond")) return "draft";
+      if (text.includes("book") || text.includes("schedule") || text.includes("calendar") || text.includes("time")) return "book";
+      if (text.includes("research") || text.includes("background") || text.includes("verify") || text.includes("source")) return "research";
+      return "rank";
+    }
+
+    function contextCards(row) {
+      const proof = proofFor(row);
+      return [
+        { name: "Pinned context", detail: matchesFor(row).join(", "), status: "local" },
+        { name: "Public proof", detail: `${proof.sources} source signal${proof.sources === 1 ? "" : "s"} / ${proof.status}`, status: row.p === "p3" ? "thin" : "ready" },
+        { name: "Calendar", detail: calendarFor(row), status: row.group === "book" ? "action" : "optional" },
+        { name: "Gmail action", detail: "Draft only until explicit approval", status: "safe" },
+      ];
+    }
+
+    function traceRows(row) {
+      const proof = proofFor(row);
+      return [
+        { name: "Pinned context", detail: matchesFor(row).join(", "), state: "loaded", tone: "ok" },
+        { name: "Fit rationale", detail: `${fitFor(row).score} ${fitFor(row).label} from queue priority and match signals`, state: "scored", tone: "ok" },
+        { name: "NodeBench", detail: `${proof.sources} public-source signal${proof.sources === 1 ? "" : "s"}; ${proof.status}`, state: row.p === "p3" ? "thin" : "ready", tone: row.p === "p3" ? "open" : "ok" },
+        { name: "Calendar", detail: calendarFor(row), state: row.group === "book" ? "suggest" : "optional", tone: row.group === "book" ? "wait" : "ok" },
+      ];
+    }
+
     function renderAgent(mode = "rank") {
       const proof = proofFor(activeRow);
+      const fit = fitFor(activeRow);
+      const matches = matchesFor(activeRow);
       agentContext.textContent = `${activeRow.person} / ${priorityText(activeRow.p)} / ${proof.status}`;
       agentBody.innerHTML = `
+        <section class="agent-section primary">
+          <div class="agent-section-head">
+            <div>
+              <div class="agent-kicker">Selected opportunity</div>
+              <h3>${activeRow.person}</h3>
+            </div>
+            <div class="agent-score">${fit.score}<small>${fit.label}</small></div>
+          </div>
+          <p class="agent-copy">${activeRow.context}</p>
+          <div class="agent-next">
+            <strong>${shortActionFor(activeRow)}</strong>
+            ${activeRow.next}
+          </div>
+        </section>
+
+        <section class="agent-section">
+          <div class="agent-section-head">
+            <div>
+              <div class="agent-kicker">Context used</div>
+              <h3>Evidence map</h3>
+            </div>
+          </div>
+          <div class="agent-context-grid">
+            ${contextCards(activeRow).map((item) => `
+              <div class="agent-context-card">
+                <strong>${item.name}</strong>
+                <span>${item.detail}</span>
+                <em>${item.status}</em>
+              </div>
+            `).join("")}
+          </div>
+        </section>
+
+        <section class="agent-section">
+          <div class="agent-section-head">
+            <div>
+              <div class="agent-kicker">Reasoning</div>
+              <h3>${modeTitle(mode)}</h3>
+            </div>
+          </div>
+          <p class="agent-copy">${agentAnswer(activeRow, mode)}</p>
+          <div class="matches">${matches.map((match) => `<span class="match">${match}</span>`).join("")}</div>
+        </section>
+
+        <section class="agent-section">
+          <div class="agent-section-head">
+            <div>
+              <div class="agent-kicker">Tool trace</div>
+              <h3>What the agent checked</h3>
+            </div>
+          </div>
+          <div class="agent-trace">
+            ${traceRows(activeRow).map((item) => `
+              <div class="trace-row">
+                <span class="trace-dot ${item.tone === "open" ? "open" : item.tone === "wait" ? "wait" : ""}">${item.tone === "open" ? "!" : item.tone === "wait" ? "?" : "✓"}</span>
+                <span><strong>${item.name}</strong>${item.detail}</span>
+                <em>${item.state}</em>
+              </div>
+            `).join("")}
+          </div>
+        </section>
+
+        <section class="agent-section warning">
+          <div class="agent-section-head">
+            <div>
+              <div class="agent-kicker">Missing evidence</div>
+              <h3>Verify before acting</h3>
+            </div>
+          </div>
+          <div class="agent-trace">
+            ${proof.missing.map((item) => `
+              <div class="trace-row">
+                <span class="trace-dot open">!</span>
+                <span><strong>${item}</strong>Resolve this before sending a high-commitment reply.</span>
+                <em>open</em>
+              </div>
+            `).join("")}
+          </div>
+        </section>
+
+        <section class="agent-section">
+          <div class="agent-section-head">
+            <div>
+              <div class="agent-kicker">Commands</div>
+              <h3>One-click next moves</h3>
+            </div>
+          </div>
+          <div class="agent-command-list">
+            <button class="agent-command primary" data-agent-mode="draft" type="button"><strong>Draft reply</strong><span>Write a safe, concise response without sending.</span></button>
+            <button class="agent-command" data-agent-mode="rank" type="button"><strong>Explain rank</strong><span>Show why this item beats the rest of the queue.</span></button>
+            <button class="agent-command" data-agent-mode="book" type="button"><strong>Plan booking</strong><span>Suggest the smallest calendar block and follow-up state.</span></button>
+            <button class="agent-command" data-agent-mode="research" type="button"><strong>Research checklist</strong><span>List company, role, and people facts to verify.</span></button>
+          </div>
+        </section>
+
+        <section class="agent-section">
+          <div class="agent-section-head">
+            <div>
+              <div class="agent-kicker">Sources</div>
+              <h3>Context boundary</h3>
+            </div>
+          </div>
+          <div class="agent-source-list">
+            <div class="agent-source"><strong>Pinned files</strong><span>local summaries only</span></div>
+            <div class="agent-source"><strong>Public research</strong><span>NodeBench-style source pack</span></div>
+            <div class="agent-source"><strong>Calendar</strong><span>suggestions only</span></div>
+            <div class="agent-source"><strong>Gmail action</strong><span>approval required</span></div>
+          </div>
+        </section>
+
         <div class="agent-message user">
           <strong>Selected context</strong>
-          ${activeRow.person} · ${activeRow.context}
+          ${activeRow.person} - ${activeRow.context}
         </div>
         <div class="agent-message agent">
-          <strong>Recommended move</strong>
-          ${agentAnswer(activeRow, mode)}
-        </div>
-        <div class="agent-tools">
-          <button class="agent-tool" data-agent-mode="rank" type="button">Explain rank</button>
-          <button class="agent-tool" data-agent-mode="draft" type="button">Draft reply</button>
-          <button class="agent-tool" data-agent-mode="book" type="button">Plan booking</button>
-          <button class="agent-tool" data-agent-mode="research" type="button">Research checklist</button>
+          <strong>Agent</strong>
+          I can explain the rank, draft a reply, plan booking, or produce a verification checklist. Any send or calendar change still requires explicit approval.
         </div>
       `;
     }
@@ -1405,9 +1813,10 @@
     });
     document.getElementById("agentSend").addEventListener("click", () => {
       const prompt = agentInput.value.trim() || "Explain the selected row";
+      const mode = inferMode(prompt);
       agentBody.insertAdjacentHTML("beforeend", `
         <div class="agent-message user"><strong>You</strong>${prompt}</div>
-        <div class="agent-message agent"><strong>Agent</strong>${agentAnswer(activeRow, "rank")}</div>
+        <div class="agent-message agent"><strong>Agent</strong>${agentAnswer(activeRow, mode)}</div>
       `);
       agentInput.value = "";
       agentBody.scrollTop = agentBody.scrollHeight;
