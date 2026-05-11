@@ -10,11 +10,32 @@ This repo is meant to communicate by artifact: every feature claim should have a
 
 | Artifact | What It Proves | File |
 | --- | --- | --- |
+| Today Queue demo | A public-safe, minimal career-inbox triage surface: one queue, one decision, daily sweep archive | `public/demo/today-queue.html` |
 | Magic resend / reply QA | Draft, check, and approval-gate follow-up without sending externally | `public/demo/gmail-magic-resend.gif` |
 | One workspace lanes | Today, Inbox, Calendar, and Goals stay distinct and readable | `public/demo/workflow-lanes-demo.gif` |
 | Snapshot correction | Before/finding/after dogfood proof for UI changes | `public/demo/qa-dogfood-snapshots.png` |
 | Person-state matrix | Same lanes adapt to job seeker, recruiter, student, and operator states | `public/demo/person-state-matrix.png` |
 | Remotion storyboard | End-to-end video scenes generated from sanitized assets | `public/demo/remotion-workflow-storyboard.png` |
+
+### Today Queue / Minimal Inbox Triage
+
+The latest public-safe artifact is a deliberately simplified career-inbox interface:
+
+- one oversized next-best-action
+- one ranked queue instead of a dashboard wall
+- daily sweeps visible in the rail
+- simple `Now`, `Prep`, `Batch`, and `Later` filters
+- `Cmd/Ctrl+K` search for person, company, or action
+
+Open the standalone demo:
+
+[public/demo/today-queue.html](public/demo/today-queue.html)
+
+Privacy note: the demo uses synthetic/anonymized names, companies, and messages. The private Gmail/LinkedIn tracker that inspired it is not committed.
+
+<p>
+  <img src="https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/today-queue-preview.png" alt="Today Queue minimal inbox triage demo" width="960" />
+</p>
 
 ### Gmail Magic Resend / Reply QA
 

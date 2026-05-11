@@ -1,0 +1,857 @@
+<!-- Public-safe demo: all names, companies, and message details are synthetic/anonymized. -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Today Queue - May 11, 2026</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f5f1;
+      --surface: #fffdf9;
+      --surface-2: #f1eee8;
+      --ink: #191816;
+      --muted: #736f68;
+      --faint: #9c978f;
+      --line: #e2ddd4;
+      --blue: #2457d6;
+      --green: #0f7a4f;
+      --orange: #a85d00;
+      --red: #b3261e;
+      --shadow: 0 18px 60px rgba(40, 34, 24, .08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: ui-serif, Georgia, "Times New Roman", serif;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+    }
+
+    .rail {
+      border-right: 1px solid var(--line);
+      padding: 32px 24px;
+      background: rgba(255, 253, 249, .64);
+    }
+
+    .brand {
+      margin-bottom: 42px;
+    }
+
+    .brand .kicker,
+    .section-label,
+    .mini-label,
+    .meta,
+    .tag,
+    .command-hint,
+    .detail-label {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .brand .kicker {
+      color: var(--faint);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.02;
+      letter-spacing: -.03em;
+      font-weight: 520;
+    }
+
+    .brand p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 15px;
+    }
+
+    .section-label {
+      display: flex;
+      justify-content: space-between;
+      color: var(--faint);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin: 0 0 10px;
+    }
+
+    .sweeps {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 34px;
+    }
+
+    .sweep {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 10px 8px;
+      border-radius: 12px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .sweep:hover,
+    .sweep.active {
+      background: var(--surface);
+      color: var(--ink);
+      box-shadow: 0 10px 28px rgba(40, 34, 24, .06);
+    }
+
+    .sweep-date {
+      font-size: 12px;
+      color: var(--faint);
+      padding-top: 1px;
+    }
+
+    .sweep-title {
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .rail-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 14px 42px rgba(40, 34, 24, .05);
+    }
+
+    .rail-card .number {
+      display: block;
+      font-size: 44px;
+      line-height: 1;
+      letter-spacing: -.05em;
+      margin: 8px 0;
+    }
+
+    .rail-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    main {
+      padding: 34px clamp(28px, 5vw, 76px) 70px;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 22px;
+      margin-bottom: 58px;
+    }
+
+    .top h2 {
+      margin: 0;
+      font-size: clamp(44px, 6vw, 92px);
+      letter-spacing: -.07em;
+      line-height: .9;
+      font-weight: 500;
+      max-width: 920px;
+    }
+
+    .command {
+      min-width: 320px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      padding: 10px 14px;
+      box-shadow: 0 12px 42px rgba(40, 34, 24, .05);
+    }
+
+    .command input {
+      min-width: 0;
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 14px;
+    }
+
+    .command-hint {
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 3px 7px;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+
+    .focus {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 38px;
+      align-items: start;
+      margin-bottom: 44px;
+    }
+
+    .next-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: clamp(28px, 4vw, 52px);
+      min-height: 420px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .next-card h3 {
+      margin: 0 0 18px;
+      font-size: clamp(30px, 4vw, 58px);
+      letter-spacing: -.05em;
+      line-height: .98;
+      font-weight: 520;
+    }
+
+    .next-card p {
+      margin: 0;
+      max-width: 720px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 19px;
+    }
+
+    .next-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 36px;
+    }
+
+    .action-button {
+      border: 1px solid var(--line);
+      background: var(--ink);
+      color: var(--surface);
+      border-radius: 999px;
+      padding: 12px 17px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .action-button.secondary {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .summary {
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .mini-label {
+      color: var(--faint);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .mini-value {
+      display: block;
+      margin-top: 5px;
+      font-size: 22px;
+      line-height: 1.1;
+    }
+
+    .sweep-panel {
+      background: transparent;
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+    }
+
+    .sweep-panel h3 {
+      margin: 8px 0 10px;
+      font-size: 28px;
+      letter-spacing: -.04em;
+      line-height: 1.05;
+      font-weight: 500;
+    }
+
+    .sweep-panel p {
+      margin: 0 0 20px;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    .sweep-panel ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 14px;
+    }
+
+    .sweep-panel li {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 10px;
+      color: var(--ink);
+      line-height: 1.45;
+      font-size: 15px;
+    }
+
+    .sweep-panel li:before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      margin-top: 8px;
+      border-radius: 50%;
+      background: var(--ink);
+    }
+
+    .queue-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin: 34px 0 12px;
+      border-top: 1px solid var(--line);
+      padding-top: 26px;
+    }
+
+    .queue-head h3 {
+      margin: 0;
+      font-size: 25px;
+      letter-spacing: -.04em;
+      font-weight: 520;
+    }
+
+    .filters {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .filter {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 10px;
+      cursor: pointer;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+    }
+
+    .filter.active,
+    .filter:hover {
+      background: var(--surface);
+      color: var(--ink);
+      box-shadow: 0 8px 24px rgba(40, 34, 24, .06);
+    }
+
+    .queue {
+      display: grid;
+      gap: 1px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .row {
+      border: 0;
+      background: var(--surface);
+      padding: 18px 20px;
+      display: grid;
+      grid-template-columns: 44px minmax(180px, 260px) minmax(0, 1fr) 190px;
+      gap: 18px;
+      align-items: start;
+      text-align: left;
+      cursor: pointer;
+      min-height: 86px;
+    }
+
+    .row:hover,
+    .row.active {
+      background: #fffaf1;
+    }
+
+    .rank {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+    }
+
+    .person {
+      font-size: 17px;
+      line-height: 1.2;
+    }
+
+    .meta {
+      color: var(--faint);
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    .signal {
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 15px;
+    }
+
+    .next {
+      color: var(--ink);
+      line-height: 1.4;
+      font-size: 14px;
+    }
+
+    .tag {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .p0 { color: var(--red); background: #f8e8e5; }
+    .p1 { color: var(--blue); background: #e8eefb; }
+    .p2 { color: var(--orange); background: #f7ebda; }
+    .p3 { color: var(--muted); background: #eee9e1; }
+
+    .detail {
+      margin-top: 32px;
+      max-width: 920px;
+      min-height: 220px;
+      border-left: 1px solid var(--line);
+      padding-left: 28px;
+    }
+
+    .detail-label {
+      color: var(--faint);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .detail h3 {
+      margin: 0 0 10px;
+      font-size: 34px;
+      letter-spacing: -.05em;
+      font-weight: 500;
+    }
+
+    .detail p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 17px;
+    }
+
+    .detail .rule {
+      color: var(--ink);
+    }
+
+    .archive {
+      margin-top: 42px;
+      border-top: 1px solid var(--line);
+      padding-top: 26px;
+    }
+
+    .archive h3 {
+      margin: 0 0 16px;
+      font-size: 25px;
+      letter-spacing: -.04em;
+      font-weight: 520;
+    }
+
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .archive-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      min-height: 170px;
+    }
+
+    .archive-card strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .archive-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .reference {
+      margin-top: 42px;
+      color: var(--faint);
+      font-size: 12px;
+      line-height: 1.5;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .reference a {
+      color: var(--muted);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 1180px) {
+      .shell { grid-template-columns: 1fr; }
+      .rail {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .focus { grid-template-columns: 1fr; }
+      .row {
+        grid-template-columns: 34px minmax(160px, 230px) minmax(0, 1fr);
+      }
+      .row .next { grid-column: 3; }
+      .archive-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 780px) {
+      .rail, main { padding: 22px; }
+      .top { display: block; margin-bottom: 34px; }
+      .command { min-width: 0; margin-top: 18px; }
+      .summary { grid-template-columns: 1fr; }
+      .queue-head { display: block; }
+      .filters { margin-top: 14px; }
+      .row { grid-template-columns: 34px 1fr; }
+      .row .signal,
+      .row .next { grid-column: 2; }
+      .archive-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="rail">
+      <section class="brand">
+        <div class="kicker">Career Ops</div>
+        <h1>One queue. One decision.</h1>
+        <p>No dashboard theater. Today is only the messages that can change your pipeline.</p>
+      </section>
+
+      <section>
+        <div class="section-label"><span>Daily sweeps</span><span>4</span></div>
+        <div class="sweeps" id="sweeps"></div>
+      </section>
+
+      <section class="rail-card">
+        <div class="mini-label">Loaded inbox</div>
+        <span class="number">60</span>
+        <p>Reduced to four immediate decisions, seven prep/research leads, and a batchable long tail.</p>
+      </section>
+    </aside>
+
+    <main>
+      <header class="top">
+        <h2>Today is not the whole inbox.</h2>
+        <label class="command">
+          <span class="command-hint">⌘K</span>
+          <input id="search" placeholder="Find a person, company, or action" />
+        </label>
+      </header>
+
+      <section class="focus">
+        <article class="next-card">
+          <div>
+            <div class="mini-label">Next best action</div>
+          <h3 id="heroTitle">Book warm intro / YC AI Ops Co.</h3>
+            <p id="heroCopy">Use Wednesday, May 13 at 11:30 AM PT if available. Backup Thursday afternoon or Friday morning. Then move on.</p>
+            <div class="next-actions">
+              <button class="action-button" data-focus="book">Show booking queue</button>
+              <button class="action-button secondary" data-focus="research">Show prep queue</button>
+            </div>
+          </div>
+          <div class="summary">
+            <div><div class="mini-label">Must clear</div><span class="mini-value">4</span></div>
+            <div><div class="mini-label">Prep</div><span class="mini-value">7</span></div>
+            <div><div class="mini-label">Batch / defer</div><span class="mini-value">42</span></div>
+          </div>
+        </article>
+
+        <article class="sweep-panel">
+          <div class="mini-label" id="sweepDate">Daily sweep / May 11</div>
+          <h3 id="sweepTitle">Public inbox tracker demo</h3>
+          <p id="sweepSummary">Current sweep reduced the loaded 60-message demo inbox into five operating queues.</p>
+          <ul id="sweepPoints"></ul>
+        </article>
+      </section>
+
+      <section class="queue-head">
+        <h3>Queue</h3>
+        <div class="filters">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="p0">Now</button>
+          <button class="filter" data-filter="p1">Prep</button>
+          <button class="filter" data-filter="p2">Batch</button>
+          <button class="filter" data-filter="p3">Later</button>
+        </div>
+      </section>
+
+      <section class="queue" id="queue"></section>
+      <section class="detail" id="detail"></section>
+
+      <section class="archive">
+        <h3>Daily sweep archive</h3>
+        <div class="archive-grid" id="archive"></div>
+      </section>
+
+      <section class="reference">
+        Design reference used: Things-style Today focus, Superhuman-style triage, Linear-style command/list workflow, and public Claude/Garden design skills emphasizing intentional restraint and verified visual polish.
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const sweeps = [
+      {
+        date: "May 11",
+        title: "Public inbox tracker demo",
+        summary: "Converted 60 synthetic inbound threads into a small set of decisions.",
+        points: [
+          "Book the warm intro with YC AI Ops Co first.",
+          "Open the remote AI SWE lead and qualify company, role, comp, location.",
+          "Ask the operator friend whether the PE/AI lead has budget and role clarity.",
+          "Leave the submitted applied-AI role as waiting after submission."
+        ]
+      },
+      {
+        date: "May 8",
+        title: "Insurance AI Co, Healthcare OS Co, Credit Workflow Co, AI Product Screen",
+        summary: "Earlier Startup Lead dropped; Insurance AI Co became better fit; calendar became concrete.",
+        points: [
+          "Insurance AI Co permission and refreshed resume sent.",
+          "Healthcare OS Co Matt interview confirmed for May 14.",
+          "Credit Workflow Co booked for May 11.",
+          "AI Product Screen rescheduled for May 12."
+        ]
+      },
+      {
+        date: "May 7",
+        title: "Healthcare OS Co became top active opportunity",
+        summary: "Angie/Healthcare OS Co screen completed, Matt interview scheduled, Tiny Team Lead closed.",
+        points: [
+          "Healthcare OS Co HM interview set for May 14.",
+          "Earlier Startup Lead/Recruiting Partner remained active.",
+          "Credit Workflow Co offered Monday/Tuesday windows.",
+          "Tiny Team Lead moved out of active pursuit."
+        ]
+      },
+      {
+        date: "May 6",
+        title: "First structured career sweep",
+        summary: "Warm pipeline separated from broad job alerts and admin noise.",
+        points: [
+          "Earlier Startup Lead/Recruiting Partner and Rational calls completed.",
+          "Tiny Team Lead needed calibrated follow-up.",
+          "Applied AI Platform, Healthcare AI Lead, Fintech Ops Lead, Logistics AI Lead stayed warm.",
+          "Broad alerts explicitly deprioritized."
+        ]
+      }
+    ];
+
+    const rows = [
+      { p: "p0", group: "book", person: "Warm Intro Lead", context: "YC AI Ops Co", signal: "Active founder-recruiter lead after Earlier Startup Lead/Insurance AI Co context.", next: "Book Wed Wednesday 11:30 AM.", why: "This is specific, current, and high enough signal to clear before recruiter batch work." },
+      { p: "p0", group: "book", person: "Remote AI SWE Lead", context: "Remote AI Software Engineer", signal: "New message with role title but missing company/process details.", next: "Open and qualify company, comp, location, process.", why: "Potentially useful, but not schedulable until the basics are known." },
+      { p: "p0", group: "book", person: "Operator Friend", context: "PE / AI operations", signal: "Messy acquired-business workflow problem; current tool is buggy and too human-in-loop.", next: "Ask exact role, budget, timeline, ownership.", why: "Could map to your workflow automation story, or could be unfocused consulting." },
+      { p: "p0", group: "book", person: "Submitted Role", context: "Applied AI Platform", signal: "Submission already approved.", next: "Wait. Follow up in 48 hours if silent.", why: "More action now is noise." },
+
+      { p: "p1", group: "research", person: "AI Evals Founder", context: "Production AI Tooling Co", signal: "Agent evals and production AI tooling.", next: "Prep for booked Wed 9:00 AM PT.", why: "Direct match to agent reliability, evals, and workflow tooling." },
+      { p: "p1", group: "research", person: "Agent Governance Lead", context: "Agent Governance Co", signal: "Agent governance and multi-agent systems.", next: "Prep for booked Wed 10:00 AM PT.", why: "Good fit for governance, reliability, and systems thinking." },
+      { p: "p1", group: "research", person: "Venture Startup Lead", context: "AI-Native Product Co", signal: "Accel/a16z/General Catalyst backed Senior Product Engineer AI native.", next: "Research senior bar and decide if worth a reply.", why: "Strong company signal, but likely seniority calibration risk." },
+      { p: "p1", group: "research", person: "Vertical Agent Recruiter", context: "Vertical AI agents", signal: "Founding AI Engineer, vertical AI agents.", next: "Confirm resume/JD/process.", why: "Very close to the AI workflow/founding engineer narrative." },
+      { p: "p1", group: "research", person: "Startup Talent Partner", context: "AI startup batch", signal: "Many backed startup engineering opportunities.", next: "Ask for top three best-fit roles only.", why: "Useful only if narrowed." },
+      { p: "p1", group: "research", person: "Data Platform Recruiter", context: "Data-Centric AI Co", signal: "Data-centric AI company.", next: "Review role level and location.", why: "Strong brand for data workflows." },
+      { p: "p1", group: "research", person: "Logistics AI Recruiter", context: "Logistics AI Co", signal: "Supply chain/logistics plus AI.", next: "Open and review details before scheduling.", why: "Could map to operational automation." },
+
+      { p: "p2", group: "batch", person: "Agentic Dev Recruiter", context: "Enterprise AI Team", signal: "Agentic AI Developer, remote full-time.", next: "Ask JD, comp, stack, process.", why: "Worth a filter reply, not custom prep yet." },
+      { p: "p2", group: "batch", person: "Referral Partner", context: "Attachment sent", signal: "Resume/attachment already sent.", next: "Confirm receipt and next step.", why: "Keep warm with minimal effort." },
+      { p: "p2", group: "batch", person: "AI/ML Recruiter", context: "AI/ML Engineer", signal: "New notification, under-specified.", next: "Ask company, JD, comp, location.", why: "Not enough to judge yet." },
+      { p: "p2", group: "batch", person: "Bay Area Recruiter", context: "Sunnyvale AI SWE", signal: "AI software engineer, two new notifications.", next: "Clarify company and onsite requirement.", why: "Could be useful if full-time and strong." },
+      { p: "p2", group: "batch", person: "AI Product Recruiter", context: "Compliance AI Co", signal: "AI Engineer at Compliance AI Co.", next: "Ask role level, scope, comp.", why: "Needs concrete details." },
+
+      { p: "p3", group: "later", person: "Generic vendor roles", context: "Meta / HCL / contract", signal: "Duplicate requisitions, onsite-heavy, contract-heavy.", next: "Defer unless rate, remote, and client quality are strong.", why: "These create activity without improving pipeline quality." },
+      { p: "p3", group: "later", person: "Old January backlog", context: "Stale messages", signal: "Co-invest pitches, paid surveys, old AI implementation roles.", next: "Archive unless relationship value is clear.", why: "Stale context creates false urgency." },
+      { p: "p3", group: "later", person: "Networking-only threads", context: "No concrete role", signal: "Good people, unclear next step.", next: "Do not schedule this interview-heavy week.", why: "Useful later, costly today." }
+    ];
+
+    let activeFilter = "all";
+    let activeRow = rows[0];
+    const queue = document.getElementById("queue");
+    const detail = document.getElementById("detail");
+    const search = document.getElementById("search");
+
+    function priorityText(p) {
+      if (p === "p0") return "Now";
+      if (p === "p1") return "Prep";
+      if (p === "p2") return "Batch";
+      return "Later";
+    }
+
+    function rowMatches(row) {
+      const q = search.value.trim().toLowerCase();
+      const filterOk = activeFilter === "all" || row.p === activeFilter || row.group === activeFilter;
+      if (!filterOk) return false;
+      if (!q) return true;
+      return [row.person, row.context, row.signal, row.next, row.why].join(" ").toLowerCase().includes(q);
+    }
+
+    function renderQueue() {
+      const visible = rows.filter(rowMatches);
+      if (visible.length && !visible.includes(activeRow)) activeRow = visible[0];
+      queue.innerHTML = "";
+      visible.forEach((row, index) => {
+        const button = document.createElement("button");
+        button.className = `row ${activeRow === row ? "active" : ""}`;
+        button.innerHTML = `
+          <div class="rank">${index + 1}</div>
+          <div>
+            <div class="tag ${row.p}">${priorityText(row.p)}</div>
+            <div class="person">${row.person}</div>
+            <div class="meta">${row.context}</div>
+          </div>
+          <div class="signal">${row.signal}</div>
+          <div class="next">${row.next}</div>
+        `;
+        button.addEventListener("click", () => {
+          activeRow = row;
+          renderQueue();
+          renderDetail();
+        });
+        queue.appendChild(button);
+      });
+      if (!visible.length) {
+        queue.innerHTML = `<div class="row"><div></div><div class="person">No matches</div><div class="signal">Clear the search or change the filter.</div><div></div></div>`;
+      }
+      renderDetail();
+    }
+
+    function renderDetail() {
+      detail.innerHTML = `
+        <div class="detail-label">${priorityText(activeRow.p)} / selected</div>
+        <h3>${activeRow.person}</h3>
+        <p>${activeRow.signal}</p>
+        <p class="rule"><strong>Next:</strong> ${activeRow.next}</p>
+        <p><strong>Why:</strong> ${activeRow.why}</p>
+      `;
+    }
+
+    function renderSweeps() {
+      const sweepsEl = document.getElementById("sweeps");
+      const archive = document.getElementById("archive");
+      sweepsEl.innerHTML = "";
+      archive.innerHTML = "";
+      sweeps.forEach((sweep, index) => {
+        const button = document.createElement("button");
+        button.className = `sweep ${index === 0 ? "active" : ""}`;
+        button.innerHTML = `<span class="sweep-date">${sweep.date}</span><span class="sweep-title">${sweep.title}</span>`;
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".sweep").forEach((el) => el.classList.remove("active"));
+          button.classList.add("active");
+          document.getElementById("sweepDate").textContent = `Daily sweep / ${sweep.date}`;
+          document.getElementById("sweepTitle").textContent = sweep.title;
+          document.getElementById("sweepSummary").textContent = sweep.summary;
+          document.getElementById("sweepPoints").innerHTML = sweep.points.map((point) => `<li>${point}</li>`).join("");
+        });
+        sweepsEl.appendChild(button);
+
+        const card = document.createElement("article");
+        card.className = "archive-card";
+        card.innerHTML = `<strong>${sweep.date}: ${sweep.title}</strong><span>${sweep.summary}</span>`;
+        archive.appendChild(card);
+      });
+      document.getElementById("sweepPoints").innerHTML = sweeps[0].points.map((point) => `<li>${point}</li>`).join("");
+    }
+
+    document.querySelectorAll(".filter").forEach((button) => {
+      button.addEventListener("click", () => {
+        activeFilter = button.dataset.filter;
+        document.querySelectorAll(".filter").forEach((el) => el.classList.toggle("active", el === button));
+        renderQueue();
+      });
+    });
+
+    document.querySelectorAll("[data-focus]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const target = button.dataset.focus === "book" ? "p0" : "p1";
+        activeFilter = target;
+        document.querySelectorAll(".filter").forEach((el) => el.classList.toggle("active", el.dataset.filter === target));
+        renderQueue();
+      });
+    });
+
+    search.addEventListener("input", renderQueue);
+    document.addEventListener("keydown", (event) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        search.focus();
+      }
+    });
+
+    renderSweeps();
+    renderQueue();
+  </script>
+</body>
+</html>

@@ -30,3 +30,10 @@ Committed public-safe assets:
 Public-safe source assets live in `public/remotion-public-assets/`.
 
 Do not commit screenshots, GIFs, or videos captured from a real Gmail account unless they have been manually reviewed and sanitized.
+
+## Today Queue
+
+- `today-queue.html` - public-safe standalone minimal inbox triage interface.
+- `today-queue-preview.png` - README preview image for the Today Queue demo.
+
+All names, company details, and message content in this demo are synthetic/anonymized.
