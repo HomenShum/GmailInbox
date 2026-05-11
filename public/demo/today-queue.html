@@ -19,6 +19,7 @@
       --green: #0f7a4f;
       --orange: #a85d00;
       --red: #b3261e;
+      --purple: #6d4aff;
       --shadow: 0 18px 60px rgba(40, 34, 24, .08);
       --radius: 18px;
     }
@@ -102,7 +103,7 @@
     .sweeps {
       display: grid;
       gap: 6px;
-      margin-bottom: 34px;
+      margin-bottom: 28px;
     }
 
     .sweep {
@@ -136,6 +137,50 @@
     .sweep-title {
       font-size: 14px;
       line-height: 1.25;
+    }
+
+    .sweep-delta {
+      display: inline-flex;
+      width: fit-content;
+      margin-top: 6px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--muted);
+      padding: 3px 8px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .context-strip {
+      margin-bottom: 30px;
+    }
+
+    .context-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .context-pill {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      padding: 12px;
+      box-shadow: 0 10px 30px rgba(40, 34, 24, .04);
+    }
+
+    .context-pill strong {
+      display: block;
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    .context-pill span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
     }
 
     .rail-card {
@@ -395,12 +440,16 @@
       box-shadow: var(--shadow);
     }
 
+    .detail + .queue {
+      margin-top: 26px;
+    }
+
     .row {
       border: 0;
       background: var(--surface);
       padding: 18px 20px;
       display: grid;
-      grid-template-columns: 44px minmax(180px, 260px) minmax(0, 1fr) 190px;
+      grid-template-columns: 44px minmax(210px, 300px) minmax(0, 1fr) 190px;
       gap: 18px;
       align-items: start;
       text-align: left;
@@ -436,6 +485,50 @@
       margin-top: 6px;
     }
 
+    .score-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .score {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
+      border-radius: 999px;
+      background: #ecfdf4;
+      color: var(--green);
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .score small {
+      color: inherit;
+      font-size: 10px;
+      opacity: .78;
+      text-transform: uppercase;
+    }
+
+    .matches {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 10px;
+    }
+
+    .match {
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--muted);
+      padding: 3px 7px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
     .signal {
       color: var(--muted);
       line-height: 1.45;
@@ -465,10 +558,18 @@
 
     .detail {
       margin-top: 32px;
-      max-width: 920px;
+      max-width: 1080px;
       min-height: 220px;
       border-left: 1px solid var(--line);
       padding-left: 28px;
+    }
+
+    .detail-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 8px;
     }
 
     .detail-label {
@@ -495,6 +596,94 @@
     }
 
     .detail .rule {
+      color: var(--ink);
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .proof-card {
+      min-height: 150px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+      padding: 16px;
+    }
+
+    .proof-card strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .proof-card span,
+    .proof-card li {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .proof-card ul {
+      display: grid;
+      gap: 6px;
+      margin: 0;
+      padding-left: 16px;
+    }
+
+    .calendar-chip {
+      display: inline-flex;
+      margin-top: 10px;
+      border-radius: 999px;
+      background: #e8eefb;
+      color: var(--blue);
+      padding: 7px 10px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .detail-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .detail-action {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--ink);
+      padding: 9px 12px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .detail-action.primary {
+      background: var(--ink);
+      color: var(--surface);
+    }
+
+    .agent-footer {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fefbf5;
+      padding: 14px 16px;
+      color: var(--muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .agent-footer strong {
       color: var(--ink);
     }
 
@@ -566,6 +755,7 @@
         grid-template-columns: 34px minmax(160px, 230px) minmax(0, 1fr);
       }
       .row .next { grid-column: 3; }
+      .detail-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .archive-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
@@ -579,6 +769,8 @@
       .row { grid-template-columns: 34px 1fr; }
       .row .signal,
       .row .next { grid-column: 2; }
+      .detail { padding-left: 18px; }
+      .detail-grid { grid-template-columns: 1fr; }
       .archive-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -590,6 +782,11 @@
         <div class="kicker">Career Ops</div>
         <h1>One queue. One decision.</h1>
         <p>No dashboard theater. Today is only the messages that can change your pipeline.</p>
+      </section>
+
+      <section class="context-strip">
+        <div class="section-label"><span>Pinned context</span><span>4</span></div>
+        <div class="context-list" id="contextList"></div>
       </section>
 
       <section>
@@ -608,7 +805,7 @@
       <header class="top">
         <h2>Today is not the whole inbox.</h2>
         <label class="command">
-          <span class="command-hint">⌘K</span>
+          <span class="command-hint">Ctrl K</span>
           <input id="search" placeholder="Find a person, company, or action" />
         </label>
       </header>
@@ -650,8 +847,8 @@
         </div>
       </section>
 
-      <section class="queue" id="queue"></section>
       <section class="detail" id="detail"></section>
+      <section class="queue" id="queue"></section>
 
       <section class="archive">
         <h3>Daily sweep archive</h3>
@@ -665,9 +862,17 @@
   </div>
 
   <script>
+    const pinnedContext = [
+      { name: "Primary resume", detail: "FDE, full-stack, agentic workflow systems" },
+      { name: "Broad resume", detail: "Finance, product, operations, automation" },
+      { name: "Story bank", detail: "JPM, Meta infra, NodeBench, Gmail workspace" },
+      { name: "Target lens", detail: "AI agents, evals, infra, workflow tools" }
+    ];
+
     const sweeps = [
       {
         date: "May 11",
+        delta: "+3 new / 2 booked",
         title: "Public inbox tracker demo",
         summary: "Converted 60 synthetic inbound threads into a small set of decisions.",
         points: [
@@ -679,6 +884,7 @@
       },
       {
         date: "May 8",
+        delta: "4 concrete next steps",
         title: "Insurance AI Co, Healthcare OS Co, Credit Workflow Co, AI Product Screen",
         summary: "Earlier Startup Lead dropped; Insurance AI Co became better fit; calendar became concrete.",
         points: [
@@ -690,6 +896,7 @@
       },
       {
         date: "May 7",
+        delta: "1 top opportunity",
         title: "Healthcare OS Co became top active opportunity",
         summary: "Angie/Healthcare OS Co screen completed, Matt interview scheduled, Tiny Team Lead closed.",
         points: [
@@ -701,6 +908,7 @@
       },
       {
         date: "May 6",
+        delta: "first clean split",
         title: "First structured career sweep",
         summary: "Warm pipeline separated from broad job alerts and admin noise.",
         points: [
@@ -750,6 +958,52 @@
       return "Later";
     }
 
+    function fitFor(row) {
+      if (row.p === "p0") return { score: 91, label: "strong" };
+      if (row.p === "p1") return { score: 82, label: "good" };
+      if (row.p === "p2") return { score: 64, label: "screen" };
+      return { score: 38, label: "low" };
+    }
+
+    function matchesFor(row) {
+      const base = row.group === "book"
+        ? ["active thread", "calendar-ready"]
+        : row.group === "research"
+          ? ["agent systems", "needs proof"]
+          : row.group === "batch"
+            ? ["filter reply", "unclear scope"]
+            : ["archive risk", "low signal"];
+      if (/finance|credit|PE|operations/i.test(`${row.context} ${row.signal}`)) return [...base, "finance ops"].slice(0, 3);
+      if (/eval|governance|agent/i.test(`${row.context} ${row.signal}`)) return [...base, "AI agents"].slice(0, 3);
+      if (/health|clinical|insurance/i.test(`${row.context} ${row.signal}`)) return [...base, "vertical AI"].slice(0, 3);
+      return base.slice(0, 3);
+    }
+
+    function proofFor(row) {
+      const status = row.p === "p0" ? "ready for action" : row.p === "p1" ? "research before reply" : row.p === "p2" ? "batch qualify" : "defer";
+      const sourceCount = row.p === "p3" ? 0 : row.p === "p2" ? 1 : 3;
+      return {
+        status,
+        company: row.context,
+        role: row.person.includes("Recruiter") ? "role not extracted" : row.context,
+        sources: sourceCount,
+        missing: row.p === "p0"
+          ? ["Confirm exact time or next owner", "Keep the reply short"]
+          : row.p === "p1"
+            ? ["Company traction", "Role level", "Interview loop"]
+            : row.p === "p2"
+              ? ["Company", "Comp", "Location"]
+              : ["No current action needed"]
+      };
+    }
+
+    function calendarFor(row) {
+      if (row.group === "book") return "Suggested block: Wed May 13, 11:30 AM PT";
+      if (row.group === "research") return "Prep block: 25 min before next reply";
+      if (row.group === "batch") return "Batch block: 15 min recruiter filter";
+      return "No calendar block";
+    }
+
     function rowMatches(row) {
       const q = search.value.trim().toLowerCase();
       const filterOk = activeFilter === "all" || row.p === activeFilter || row.group === activeFilter;
@@ -764,6 +1018,8 @@
       queue.innerHTML = "";
       visible.forEach((row, index) => {
         const button = document.createElement("button");
+        const fit = fitFor(row);
+        const matches = matchesFor(row);
         button.className = `row ${activeRow === row ? "active" : ""}`;
         button.innerHTML = `
           <div class="rank">${index + 1}</div>
@@ -771,8 +1027,14 @@
             <div class="tag ${row.p}">${priorityText(row.p)}</div>
             <div class="person">${row.person}</div>
             <div class="meta">${row.context}</div>
+            <div class="score-line">
+              <span class="score">${fit.score}<small>${fit.label}</small></span>
+            </div>
           </div>
-          <div class="signal">${row.signal}</div>
+          <div class="signal">
+            ${row.signal}
+            <div class="matches">${matches.map((match) => `<span class="match">${match}</span>`).join("")}</div>
+          </div>
           <div class="next">${row.next}</div>
         `;
         button.addEventListener("click", () => {
@@ -789,24 +1051,68 @@
     }
 
     function renderDetail() {
+      const fit = fitFor(activeRow);
+      const proof = proofFor(activeRow);
+      const matches = matchesFor(activeRow);
       detail.innerHTML = `
-        <div class="detail-label">${priorityText(activeRow.p)} / selected</div>
+        <div class="detail-top">
+          <div class="detail-label">${priorityText(activeRow.p)} / selected</div>
+          <span class="score">${fit.score}<small>${fit.label}</small></span>
+        </div>
         <h3>${activeRow.person}</h3>
         <p>${activeRow.signal}</p>
         <p class="rule"><strong>Next:</strong> ${activeRow.next}</p>
         <p><strong>Why:</strong> ${activeRow.why}</p>
+        <div class="detail-grid">
+          <article class="proof-card">
+            <strong>Pinned match</strong>
+            <span>${matches.join(", ")}</span>
+            <div class="matches">${matches.map((match) => `<span class="match">${match}</span>`).join("")}</div>
+          </article>
+          <article class="proof-card">
+            <strong>NodeBench proof</strong>
+            <span>${proof.status}. ${proof.sources} public-source signal${proof.sources === 1 ? "" : "s"} attached.</span>
+            <ul>${proof.missing.slice(0, 3).map((item) => `<li>${item}</li>`).join("")}</ul>
+          </article>
+          <article class="proof-card">
+            <strong>Calendar preview</strong>
+            <span>This comes from the scheduling/deadline logic in the private dashboard, compressed into one suggestion.</span>
+            <div class="calendar-chip">${calendarFor(activeRow)}</div>
+          </article>
+          <article class="proof-card">
+            <strong>Privacy boundary</strong>
+            <span>Public demo only shows synthetic summaries. Raw email body, resume text, and private fit scoring stay local.</span>
+          </article>
+        </div>
+        <div class="detail-actions">
+          <button class="detail-action primary" type="button">Read</button>
+          <button class="detail-action" type="button">Draft reply</button>
+          <button class="detail-action" type="button">Book</button>
+          <button class="detail-action" type="button">Research</button>
+          <button class="detail-action" type="button">Defer</button>
+        </div>
+        <div class="agent-footer">
+          <strong>Agent command:</strong> "Using my pinned context and public research, explain why this is ranked here, draft the safest next reply, and tell me what evidence is missing."
+        </div>
       `;
     }
 
     function renderSweeps() {
+      const contextList = document.getElementById("contextList");
       const sweepsEl = document.getElementById("sweeps");
       const archive = document.getElementById("archive");
+      contextList.innerHTML = pinnedContext.map((item) => `
+        <article class="context-pill">
+          <strong>${item.name}</strong>
+          <span>${item.detail}</span>
+        </article>
+      `).join("");
       sweepsEl.innerHTML = "";
       archive.innerHTML = "";
       sweeps.forEach((sweep, index) => {
         const button = document.createElement("button");
         button.className = `sweep ${index === 0 ? "active" : ""}`;
-        button.innerHTML = `<span class="sweep-date">${sweep.date}</span><span class="sweep-title">${sweep.title}</span>`;
+        button.innerHTML = `<span class="sweep-date">${sweep.date}</span><span><span class="sweep-title">${sweep.title}</span><span class="sweep-delta">${sweep.delta}</span></span>`;
         button.addEventListener("click", () => {
           document.querySelectorAll(".sweep").forEach((el) => el.classList.remove("active"));
           button.classList.add("active");
@@ -819,7 +1125,7 @@
 
         const card = document.createElement("article");
         card.className = "archive-card";
-        card.innerHTML = `<strong>${sweep.date}: ${sweep.title}</strong><span>${sweep.summary}</span>`;
+        card.innerHTML = `<strong>${sweep.date}: ${sweep.title}</strong><span>${sweep.delta}. ${sweep.summary}</span>`;
         archive.appendChild(card);
       });
       document.getElementById("sweepPoints").innerHTML = sweeps[0].points.map((point) => `<li>${point}</li>`).join("");
