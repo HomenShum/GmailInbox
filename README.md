@@ -26,7 +26,7 @@ The latest public-safe artifact is a deliberately simplified career-inbox interf
 - daily sweeps visible in the rail
 - simple `Now`, `Prep`, `Batch`, and `Later` filters
 - `Cmd/Ctrl+K` search for person, company, or action
-- a full-height right-side agent rail with selected-object context, evidence map, tool trace, missing-evidence warnings, one-click commands, sources, and a compact composer
+- a full-height right-side decision rail: one recommendation, readiness proof, action dock, disclosed trace, explicit permission boundary, and compact composer
 
 Open the standalone demo:
 

@@ -80,6 +80,18 @@ The agent panel should be useful without making the page feel like a generic cha
 
 For desktop agent-native workspaces, use a full right-side rail. For tablet/mobile, collapse it into a drawer.
 
+The design philosophy is:
+
+```text
+focus first
+proof second
+action third
+trace on demand
+permission always visible
+```
+
+This means the right rail should not expose every internal artifact as separate always-open cards. The first view should show the selected object, the readiness state, and the next command. Longer reasoning, tool trace, and missing evidence can be expanded when the user wants to audit the recommendation.
+
 ```text
 selected queue row
 -> active pinned context
@@ -93,11 +105,10 @@ For a premium desktop rail, structure it as:
 ```text
 header: active object + local-first status
 selected card: score + next action
-evidence map: pinned files / public proof / calendar / approval state
-reasoning: current mode output
-tool trace: checks performed
-missing evidence: what blocks a confident action
+readiness: fit / proof / time / guardrail
 commands: draft, explain, book, research
+reasoning: current mode output
+disclosures: tool trace + missing evidence
 sources: context boundary
 composer: short prompt input
 ```

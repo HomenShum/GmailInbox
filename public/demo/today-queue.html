@@ -796,15 +796,16 @@
 
     .agent-body {
       display: grid;
-      gap: 12px;
+      gap: 10px;
       overflow: auto;
-      padding: 14px 16px 16px;
+      padding: 12px 16px 16px;
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 13px;
       flex: 1;
     }
 
     .agent-section {
+      order: 4;
       border: 1px solid var(--line);
       border-radius: 18px;
       background: var(--surface);
@@ -820,6 +821,231 @@
     .agent-section.warning {
       background: #fff8e8;
       border-color: #f2dfb9;
+    }
+
+    .agent-philosophy {
+      display: grid;
+      gap: 6px;
+      border-bottom: 1px solid var(--line);
+      padding: 10px 16px;
+      background: linear-gradient(180deg, rgba(250, 247, 241, .95), rgba(255, 253, 249, .96));
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .agent-philosophy strong {
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.2;
+    }
+
+    .agent-philosophy span {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .agent-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .agent-pill-row b {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--muted);
+      padding: 4px 7px;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .agent-decision {
+      order: 1;
+      border: 1px solid #d8cffc;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 90% 6%, rgba(101, 78, 230, .16), transparent 32%),
+        linear-gradient(160deg, #f7f4ff 0%, #fffdf9 74%);
+      padding: 14px;
+      box-shadow: 0 18px 45px rgba(79, 65, 41, .08);
+    }
+
+    .agent-decision-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .agent-decision h3 {
+      margin: 5px 0 0;
+      font-size: 20px;
+      line-height: 1.02;
+      letter-spacing: -.04em;
+    }
+
+    .agent-decision p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.42;
+    }
+
+    .decision-score {
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      background: var(--ink);
+      color: var(--surface);
+      text-align: center;
+      font-weight: 900;
+      line-height: .94;
+    }
+
+    .decision-score small {
+      display: block;
+      margin-top: 3px;
+      color: rgba(255, 253, 249, .75);
+      font-size: 9px;
+      text-transform: uppercase;
+    }
+
+    .decision-next {
+      margin-top: 11px;
+      border-radius: 16px;
+      background: rgba(255, 253, 249, .82);
+      padding: 10px;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .decision-next strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .agent-readiness {
+      order: 2;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--surface);
+      padding: 12px;
+    }
+
+    .readiness-row {
+      display: grid;
+      grid-template-columns: 62px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 7px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.32;
+    }
+
+    .readiness-row:first-of-type {
+      border-top: 0;
+    }
+
+    .readiness-row strong {
+      color: var(--ink);
+      font-size: 12px;
+    }
+
+    .readiness-bar {
+      height: 6px;
+      border-radius: 999px;
+      background: #ebe7df;
+      overflow: hidden;
+    }
+
+    .readiness-bar span {
+      display: block;
+      width: var(--level);
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--purple), #0f7a4f);
+    }
+
+    .readiness-state {
+      color: var(--faint);
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .agent-action-dock {
+      order: 3;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: -2px;
+    }
+
+    .agent-action-dock .agent-command:first-child {
+      grid-column: 1 / -1;
+    }
+
+    .agent-disclosure {
+      order: 5;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .agent-disclosure summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      cursor: pointer;
+      list-style: none;
+      padding: 13px;
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .agent-disclosure summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .agent-disclosure summary span {
+      color: var(--faint);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .agent-disclosure-body {
+      border-top: 1px solid var(--line);
+      padding: 13px;
+    }
+
+    .agent-boundary {
+      order: 6;
+      border: 1px solid #ded6c8;
+      border-radius: 18px;
+      background: #fbf8f1;
+      padding: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .agent-boundary strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--ink);
     }
 
     .agent-section-head {
@@ -979,6 +1205,7 @@
     }
 
     .agent-message {
+      order: 7;
       border-radius: 16px;
       padding: 12px;
       line-height: 1.45;
@@ -1312,6 +1539,15 @@
         </div>
         <button class="agent-close" id="agentClose" type="button" aria-label="Close agent">×</button>
       </div>
+      <div class="agent-philosophy" aria-label="Agent rail operating principle">
+        <strong>One recommendation, then proof.</strong>
+        <span>The rail stays anchored to the selected row and only escalates from explain to draft to schedule after the evidence is visible.</span>
+        <div class="agent-pill-row" aria-label="Agent principles">
+          <b>Focus</b>
+          <b>Evidence</b>
+          <b>Permission</b>
+        </div>
+      </div>
       <div class="agent-body" id="agentBody"></div>
       <div class="agent-input">
         <div class="agent-input-row">
@@ -1529,6 +1765,24 @@
       ];
     }
 
+    function readinessRows(row) {
+      const proof = proofFor(row);
+      const fit = fitFor(row);
+      const proofLevel = Math.min(96, 34 + proof.sources * 18);
+      return [
+        { name: "Fit", detail: matchesFor(row).join(", "), level: fit.score, state: fit.label },
+        { name: "Proof", detail: `${proof.sources} public signals; ${proof.status}`, level: proofLevel, state: row.p === "p3" ? "thin" : "ready" },
+        { name: "Time", detail: calendarFor(row), level: row.group === "book" ? 88 : 58, state: row.group === "book" ? "ready" : "optional" },
+        { name: "Guardrail", detail: "Drafts and calendar writes require approval", level: 100, state: "locked" },
+      ];
+    }
+
+    function primaryModeFor(row) {
+      if (row.group === "book") return "book";
+      if (row.group === "research") return "research";
+      return "draft";
+    }
+
     function renderAgent(mode = "rank") {
       const proof = proofFor(activeRow);
       const fit = fitFor(activeRow);
@@ -1655,6 +1909,104 @@
         </div>
       `;
     }
+
+    const legacyRenderAgent = renderAgent;
+    renderAgent = function renderAgentCockpit(mode = "rank") {
+      const proof = proofFor(activeRow);
+      const fit = fitFor(activeRow);
+      const matches = matchesFor(activeRow);
+      const primaryMode = primaryModeFor(activeRow);
+      agentContext.textContent = `${activeRow.person} / ${priorityText(activeRow.p)} / ${proof.status}`;
+      agentBody.innerHTML = `
+        <section class="agent-decision">
+          <div class="agent-decision-top">
+            <div>
+              <div class="agent-kicker">Selected opportunity</div>
+              <h3>${activeRow.person}</h3>
+              <p>${activeRow.context}</p>
+            </div>
+            <div class="decision-score">${fit.score}<small>${fit.label}</small></div>
+          </div>
+          <div class="decision-next">
+            <strong>${shortActionFor(activeRow)}</strong>
+            ${activeRow.next}
+          </div>
+        </section>
+
+        <section class="agent-readiness">
+          <div class="agent-section-head">
+            <div>
+              <div class="agent-kicker">Readiness</div>
+              <h3>Can I act?</h3>
+            </div>
+          </div>
+          ${readinessRows(activeRow).map((item) => `
+            <div class="readiness-row">
+              <strong>${item.name}</strong>
+              <div>
+                <div>${item.detail}</div>
+                <div class="readiness-bar" aria-label="${item.name} ${item.level}%"><span style="--level:${item.level}%"></span></div>
+              </div>
+              <span class="readiness-state">${item.state}</span>
+            </div>
+          `).join("")}
+        </section>
+
+        <section class="agent-section">
+          <div class="agent-section-head">
+            <div>
+              <div class="agent-kicker">Reasoning</div>
+              <h3>${modeTitle(mode)}</h3>
+            </div>
+          </div>
+          <p class="agent-copy">${agentAnswer(activeRow, mode)}</p>
+          <div class="matches">${matches.map((match) => `<span class="match">${match}</span>`).join("")}</div>
+        </section>
+
+        <section class="agent-action-dock" aria-label="Agent actions">
+          <button class="agent-command primary" data-agent-mode="${primaryMode}" type="button"><strong>${modeTitle(primaryMode)}</strong><span>${primaryMode === "book" ? "Suggest a calendar block and follow-up state." : primaryMode === "research" ? "List facts to verify before replying." : "Write a concise response without sending."}</span></button>
+          <button class="agent-command" data-agent-mode="rank" type="button"><strong>Explain</strong><span>Why this item is first.</span></button>
+          <button class="agent-command" data-agent-mode="draft" type="button"><strong>Draft</strong><span>Safe reply only.</span></button>
+          <button class="agent-command" data-agent-mode="research" type="button"><strong>Verify</strong><span>Missing proof.</span></button>
+        </section>
+
+        <details class="agent-disclosure">
+          <summary>Tool trace <span>checked</span></summary>
+          <div class="agent-disclosure-body agent-trace">
+            ${traceRows(activeRow).map((item) => `
+              <div class="trace-row">
+                <span class="trace-dot ${item.tone === "open" ? "open" : item.tone === "wait" ? "wait" : ""}">${item.tone === "open" ? "!" : item.tone === "wait" ? "?" : "ok"}</span>
+                <span><strong>${item.name}</strong>${item.detail}</span>
+                <em>${item.state}</em>
+              </div>
+            `).join("")}
+          </div>
+        </details>
+
+        <details class="agent-disclosure">
+          <summary>Missing evidence <span>${proof.missing.length} open</span></summary>
+          <div class="agent-disclosure-body agent-trace">
+            ${proof.missing.map((item) => `
+              <div class="trace-row">
+                <span class="trace-dot open">!</span>
+                <span><strong>${item}</strong>Resolve this before sending a high-commitment reply.</span>
+                <em>open</em>
+              </div>
+            `).join("")}
+          </div>
+        </details>
+
+        <div class="agent-boundary">
+          <strong>Context boundary</strong>
+          Pinned files are local summaries. Public research is reusable. Gmail sends and calendar writes stop at approval.
+        </div>
+
+        <div class="agent-message agent">
+          <strong>Agent</strong>
+          Current mode: ${modeTitle(mode)}. The rail is optimized for one reversible next move, not a long chat history.
+        </div>
+      `;
+    };
 
     function rowMatches(row) {
       const q = search.value.trim().toLowerCase();

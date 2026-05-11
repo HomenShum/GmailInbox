@@ -124,6 +124,15 @@ Do not include:
 
 Include the agent when it makes the current decision easier. For modern agent-native desktop apps, use a persistent right-side rail. On smaller screens, collapse it into a drawer.
 
+The philosophy is not "chat on the side." The rail is a decision cockpit:
+
+- one recommendation, then proof
+- one active object, never a generic assistant state
+- visible readiness before an action
+- action commands before long reasoning
+- deeper trace and missing evidence behind disclosure
+- explicit permission boundary before any send, schedule, archive, or external research write
+
 The right rail must remain contextual, not generic chat:
 
 ```text
@@ -135,11 +144,10 @@ The rail should read as an agent command surface, not a chat transcript. Give it
 ```text
 rail header with active object
 -> selected opportunity/card with score + next action
--> evidence map for pinned context, public proof, calendar, and approval state
+-> readiness view for fit, proof, time, and guardrail
+-> one-click action dock
 -> reasoning section for the current mode
--> tool trace showing what was checked
--> missing-evidence warning
--> one-click commands
+-> disclosed trace and missing-evidence details
 -> sources/privacy boundary
 -> compact composer
 ```
