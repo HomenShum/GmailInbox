@@ -1167,14 +1167,15 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 6px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: linear-gradient(180deg, #fffdf9, #f7f6fb);
-      padding: 8px;
-      color: var(--muted);
+      gap: 8px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      padding: 0 2px;
+      color: var(--faint);
       font-size: 10px;
-      font-weight: 850;
+      font-weight: 800;
+      font-family: var(--mono);
       overflow: hidden;
     }
 
@@ -1182,42 +1183,44 @@
       min-width: 0;
       display: flex;
       align-items: center;
-      gap: 7px;
-      flex: 1 1 126px;
+      gap: 6px;
+      flex: 1 1 112px;
     }
 
     .run-title strong {
-      display: block;
-      color: var(--ink);
-      font-size: 11px;
-      line-height: 1.1;
+      display: inline;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1;
+      letter-spacing: .02em;
     }
 
     .run-title small {
-      display: block;
+      display: inline;
       max-width: 150px;
       color: var(--faint);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       font-size: 9px;
+      margin-left: 6px;
     }
 
     .run-status-dot {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 999px;
       background: var(--green);
-      box-shadow: 0 0 0 4px rgba(0, 166, 92, .1);
+      box-shadow: none;
       flex: 0 0 auto;
     }
 
     .run-metric {
-      border-radius: 999px;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      color: var(--muted);
-      padding: 5px 7px;
+      border-radius: 0;
+      background: transparent;
+      border: 0;
+      color: var(--faint);
+      padding: 0;
       white-space: nowrap;
     }
 
@@ -1327,17 +1330,20 @@
     .run-inline {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 10px;
+      gap: 7px;
+      margin-top: 9px;
+      color: var(--faint);
+      font-family: var(--mono);
+      font-size: 10px;
     }
 
     .run-inline span {
       border-radius: 999px;
-      background: rgba(94, 78, 245, .08);
-      color: var(--purple);
-      padding: 4px 7px;
+      background: transparent;
+      color: inherit;
+      padding: 0;
       font-size: 10px;
-      font-weight: 850;
+      font-weight: 760;
     }
 
     .chat-note {
@@ -1384,51 +1390,52 @@
       text-transform: uppercase;
     }
 
-    .agent-run-drawer summary {
-      background: #fbfaf7;
+    .agent-run-drawer {
+      background: transparent;
     }
 
-    .telemetry-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+    .agent-run-drawer summary {
+      background: transparent;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .ledger-summary {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
       gap: 8px;
       margin-bottom: 12px;
-    }
-
-    .telemetry-cell {
-      border: 1px solid var(--line);
-      border-radius: 13px;
-      background: var(--surface-2);
-      padding: 9px;
-    }
-
-    .telemetry-cell span {
-      display: block;
       color: var(--faint);
-      font-size: 9px;
-      font-weight: 900;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      margin-bottom: 4px;
+      font-family: var(--mono);
+      font-size: 10px;
     }
 
-    .telemetry-cell strong {
-      display: block;
-      color: var(--ink);
-      font-size: 13px;
+    .ledger-summary span {
+      border-radius: 999px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      padding: 4px 7px;
+    }
+
+    .ledger-summary strong {
+      color: var(--muted);
+      font-weight: 850;
     }
 
     .step-list {
       position: relative;
       display: grid;
-      gap: 8px;
+      gap: 5px;
       margin-bottom: 12px;
     }
 
     .step-row {
       display: grid;
-      grid-template-columns: 24px 1fr auto;
-      gap: 9px;
+      grid-template-columns: 18px 1fr auto;
+      gap: 8px;
       align-items: start;
       color: var(--muted);
       font-size: 11px;
@@ -1436,24 +1443,25 @@
     }
 
     .step-index {
-      width: 22px;
-      height: 22px;
+      width: 16px;
+      height: 16px;
       display: grid;
       place-items: center;
       border-radius: 999px;
-      background: #eef2ff;
+      background: transparent;
       color: var(--purple);
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 950;
+      font-family: var(--mono);
     }
 
     .step-row.done .step-index {
-      background: #eaf8f0;
+      background: transparent;
       color: var(--green);
     }
 
     .step-row.gated .step-index {
-      background: #fff2cf;
+      background: transparent;
       color: var(--orange);
     }
 
@@ -1473,14 +1481,14 @@
 
     .tool-call-list {
       display: grid;
-      gap: 8px;
+      gap: 5px;
     }
 
     .tool-call-card {
       border: 1px solid var(--line);
-      border-radius: 14px;
-      background: var(--surface);
-      padding: 10px;
+      border-radius: 9px;
+      background: var(--surface-2);
+      padding: 7px 8px;
     }
 
     .tool-call-head {
@@ -1488,20 +1496,22 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      margin-bottom: 7px;
+      margin-bottom: 3px;
     }
 
     .tool-call-head strong {
-      color: var(--ink);
-      font-size: 12px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 850;
       word-break: break-word;
     }
 
     .tool-state {
       border-radius: 999px;
-      background: #eaf8f0;
+      background: transparent;
       color: var(--green);
-      padding: 3px 7px;
+      padding: 0;
       font-size: 9px;
       font-weight: 950;
       text-transform: uppercase;
@@ -1510,34 +1520,34 @@
 
     .tool-state.gated,
     .tool-state.thin {
-      background: #fff2cf;
+      background: transparent;
       color: var(--orange);
     }
 
     .tool-state.skipped {
-      background: var(--surface-2);
+      background: transparent;
       color: var(--faint);
     }
 
     .tool-call-card p {
       margin: 0;
       color: var(--muted);
-      font-size: 11px;
+      font-size: 10px;
       line-height: 1.4;
     }
 
     .tool-call-card p + p {
-      margin-top: 4px;
+      margin-top: 2px;
     }
 
     .approval-banner {
-      margin-top: 10px;
-      border: 1px solid #dfe7ff;
-      border-radius: 14px;
-      background: #f4f7ff;
-      color: var(--muted);
-      padding: 10px;
-      font-size: 11px;
+      margin-top: 9px;
+      border: 1px dashed var(--line);
+      border-radius: 10px;
+      background: transparent;
+      color: var(--faint);
+      padding: 8px;
+      font-size: 10px;
       line-height: 1.4;
     }
 
@@ -2645,8 +2655,6 @@
           </div>
           <span class="run-metric">${telemetry.steps} steps</span>
           <span class="run-metric">${telemetry.tools} tools</span>
-          <span class="run-metric">${telemetry.duration}</span>
-          <span class="run-metric">${telemetry.cost}</span>
           <span class="run-metric">${telemetry.writes}</span>
         </section>
 
@@ -2670,9 +2678,10 @@
             </div>
             <div class="run-inline">
               <span>${telemetry.steps} steps</span>
+              <span>/</span>
               <span>${telemetry.tools} tools</span>
+              <span>/</span>
               <span>${telemetry.writes}</span>
-              <span>${telemetry.confidence} confidence</span>
             </div>
             <details class="message-reasoning">
               <summary>Why this answer</summary>
@@ -2690,13 +2699,13 @@
         <details class="agent-run-drawer">
           <summary>Inspect run <span>${telemetry.steps} steps / ${telemetry.tools} tools / ${telemetry.writes}</span></summary>
           <div class="agent-disclosure-body">
-            <div class="telemetry-grid">
-              <div class="telemetry-cell"><span>Latency</span><strong>${telemetry.duration}</strong></div>
-              <div class="telemetry-cell"><span>Cost est.</span><strong>${telemetry.cost}</strong></div>
-              <div class="telemetry-cell"><span>Route</span><strong>${telemetry.model}</strong></div>
-              <div class="telemetry-cell"><span>Confidence</span><strong>${telemetry.confidence}</strong></div>
-              <div class="telemetry-cell"><span>Writes</span><strong>${telemetry.writes}</strong></div>
-              <div class="telemetry-cell"><span>Approval</span><strong>required</strong></div>
+            <div class="ledger-summary" aria-label="Run telemetry summary">
+              <span><strong>${telemetry.duration}</strong> latency</span>
+              <span><strong>${telemetry.cost}</strong> est.</span>
+              <span><strong>${telemetry.model}</strong></span>
+              <span><strong>${telemetry.confidence}</strong> confidence</span>
+              <span><strong>${telemetry.writes}</strong></span>
+              <span><strong>approval</strong> required</span>
             </div>
 
             <div class="step-list" aria-label="Agent steps">
@@ -2716,9 +2725,8 @@
                     <strong>${tool.name}</strong>
                     <span class="tool-state ${toolStateClass(tool.status)}">${tool.status}</span>
                   </div>
-                  <p><strong>Args:</strong> ${tool.args}</p>
-                  <p><strong>Result:</strong> ${tool.result}</p>
-                  <p><strong>Telemetry:</strong> ${tool.time}</p>
+                  <p>${tool.result}</p>
+                  <p>${tool.time} / ${tool.args}</p>
                 </article>
               `).join("")}
             </div>
@@ -2939,8 +2947,11 @@
           <div>${agentAnswer(activeRow, mode)}</div>
           <div class="run-inline">
             <span>${telemetry.steps} steps</span>
+            <span>/</span>
             <span>${telemetry.tools} tools</span>
+            <span>/</span>
             <span>${telemetry.duration}</span>
+            <span>/</span>
             <span>${telemetry.writes}</span>
           </div>
           <div class="message-actions">

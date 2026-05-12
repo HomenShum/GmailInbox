@@ -183,6 +183,8 @@ The default rail should show only a compact strip:
 Run ready / run_id / 5 steps / 5 tools / 2.4s / $0.004 / 0 writes
 ```
 
+Keep that strip visually quiet. Use the Parity Studio chat rule: tool state should feel like a faint inline affordance, not a metrics card. Prefer mono microcopy, low-contrast chips, small status dots, and one-line tool result rows.
+
 The detailed run trace belongs behind a disclosure:
 
 - step plan with status and duration

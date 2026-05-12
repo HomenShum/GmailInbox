@@ -147,6 +147,8 @@ The visible rail should show the run in one line:
 Run ready / 5 steps / 5 tools / 2.4s / $0.004 / 0 writes
 ```
 
+The Parity Studio chat reference keeps this subtle: tool calls are small inline chips, tool completions are faint single-line rows, and the composer remains the main affordance. Avoid a wall of telemetry cards unless the user explicitly opens the run ledger.
+
 The detailed drawer should show:
 
 - step plan with status and duration
