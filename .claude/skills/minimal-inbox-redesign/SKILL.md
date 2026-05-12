@@ -145,9 +145,11 @@ The rail should read as a chat surface with compact decision context. Give it th
 rail header with active object
 -> compact selected context strip
 -> mode/model/tool state chips
+-> compact run telemetry strip
 -> quick action row
 -> visible chat thread
 -> source chips, response actions, and collapsible reasoning inside messages
+-> collapsed inspect-run drawer for steps, tool calls, telemetry, cost, and approval gates
 -> collapsed inspect-context drawer for readiness, proof, trace, missing gaps, and permission boundary
 -> suggested prompt chips + sticky compact composer
 ```
@@ -164,6 +166,43 @@ The rail should:
 - keep private data boundaries visible
 - stop at draft, booking suggestion, research checklist, or explanation unless the product has explicit send/schedule approval
 - be collapsible so the main queue can reclaim width when needed
+
+## Agent Run Trace Rule
+
+If the agent recommends, ranks, researches, drafts, or schedules, expose the run anatomy without turning the rail into a telemetry dashboard.
+
+Use the NodeBench-style lifecycle:
+
+```text
+plan -> tool_start -> tool_done -> answer -> ledger
+```
+
+The default rail should show only a compact strip:
+
+```text
+Run ready / run_id / 5 steps / 5 tools / 2.4s / $0.004 / 0 writes
+```
+
+The detailed run trace belongs behind a disclosure:
+
+- step plan with status and duration
+- tool call cards with name, args, result, and telemetry
+- model route and cost estimate
+- source and confidence count
+- write/action gate
+- error or stale-data state when applicable
+
+Recommended tool names for the public-safe Gmail/job workflow:
+
+```text
+gmail.thread.extract
+pinnedContext.match
+nodebench.context.pack
+calendar.availability.suggest
+gmail.draft.create
+```
+
+The write gate is mandatory. A public demo can show that a draft or calendar action is possible, but it must also show that no send, label mutation, archive, or calendar write happened without explicit approval.
 
 ## Phase 5 - Sanitize For Public Release
 
@@ -253,9 +292,10 @@ Process:
 5. Redesign as one ranked queue with one next-best-action.
 6. Add selected-row proof: pinned match, public research, calendar suggestion, and privacy boundary.
 7. Add a persistent right-side agent rail for desktop, with collapsed drawer behavior on smaller screens.
-8. Sanitize all private data for public sharing.
-9. Verify load, filters, search, detail updates, agent drawer updates, and privacy scan.
-10. Update README with the artifact, preview, and method.
+8. Add run telemetry: compact run strip, expandable steps, tool calls, cost, latency, model route, and write gate.
+9. Sanitize all private data for public sharing.
+10. Verify load, filters, search, detail updates, agent drawer updates, run trace, and privacy scan.
+11. Update README with the artifact, preview, and method.
 ```
 
 ## Quality Bar

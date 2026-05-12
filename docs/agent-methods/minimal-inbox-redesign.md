@@ -106,8 +106,10 @@ For a premium desktop rail, structure it as:
 header: active object + local-first status
 compact context strip: selected object + score + next action
 mode state: mode / model / tool activity chips
+run state: compact steps / tools / latency / cost / writes
 quick actions: draft / explain / verify
 chat thread: primary answer, follow-up messages, source chips, message actions, collapsible reasoning
+inspect-run drawer: step plan / tool calls / model route / telemetry / write gate
 inspect-context drawer: readiness / proof / trace / missing evidence / boundary
 sticky composer: suggested prompt chips + short prompt input
 ```
@@ -130,6 +132,40 @@ It should also infer simple prompt intent. If the user types "draft", answer wit
 - What should be deferred?
 
 The drawer should not auto-send email, auto-book calendar events, or expose raw private text in a public demo.
+
+## Agent Run Trace Pattern
+
+The redesigned rail borrows the NodeBench chat pattern: every useful answer has a run shape, not just a final message.
+
+```text
+plan -> tool_start -> tool_done -> answer -> ledger
+```
+
+The visible rail should show the run in one line:
+
+```text
+Run ready / 5 steps / 5 tools / 2.4s / $0.004 / 0 writes
+```
+
+The detailed drawer should show:
+
+- step plan with status and duration
+- tool calls with arguments, results, and timing
+- model route and estimated cost
+- confidence or source count
+- explicit write gate before send, archive, label mutation, or calendar write
+
+For the Gmail/job workflow, the canonical public-safe tool trace is:
+
+| Tool | Public-Safe Purpose |
+| --- | --- |
+| `gmail.thread.extract` | Extract sender, subject, snippet, and labels while keeping private bodies local |
+| `pinnedContext.match` | Match against local resume/story-bank summaries |
+| `nodebench.context.pack` | Fetch reusable public company/person/role context |
+| `calendar.availability.suggest` | Suggest a time block without writing to calendar |
+| `gmail.draft.create` | Show draft capability but keep execution approval-gated |
+
+This is intentionally not an always-open telemetry wall. The run strip gives trust at a glance; the drawer gives auditability when the user asks, "what did the agent actually do?"
 
 ## Privacy Boundary
 
@@ -160,6 +196,8 @@ Before claiming the artifact is public-ready:
 - Confirm filters update the queue.
 - Confirm search updates the visible set.
 - Confirm selected detail updates.
+- Confirm the agent run strip is visible.
+- Confirm the inspect-run drawer opens and lists steps, tool calls, cost, latency, route, and write gate.
 - Confirm no text clips at the target viewport.
 - Run a privacy scan against account-specific strings, raw URLs, tokens, and local paths.
 - Update README with the artifact, preview, privacy note, and method link.

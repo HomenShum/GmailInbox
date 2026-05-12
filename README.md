@@ -26,7 +26,8 @@ The latest public-safe artifact is a deliberately simplified career-inbox interf
 - daily sweeps visible in the rail
 - simple `Now`, `Prep`, `Batch`, and `Later` filters
 - `Cmd/Ctrl+K` search for person, company, or action
-- a full-height right-side chat rail: compact selected context, mode/model/tool state, quick actions, message sources/actions/reasoning, collapsed proof drawer, suggested prompts, explicit permission boundary, and sticky composer
+- a full-height right-side chat rail: compact selected context, mode/model/tool state, run telemetry, quick actions, message sources/actions/reasoning, collapsed run/tool ledger, collapsed proof drawer, suggested prompts, explicit permission boundary, and sticky composer
+- NodeBench-style run anatomy: `plan -> tool_start -> tool_done -> answer -> ledger`, with visible steps, tool calls, latency, estimated cost, model route, source count, and `0 writes` until approval
 
 Open the standalone demo:
 
@@ -48,6 +49,8 @@ This repo includes a dedicated agent playbook for reproducing the meta-research 
 - Demo artifact: [`public/demo/today-queue.html`](public/demo/today-queue.html)
 
 Claude Code can load the skill directly. Codex, Cursor, Windsurf, and other agents can read the same `SKILL.md` as a portable methodology: inspect the current UI, research comparable interaction patterns, collapse the workflow into `Now / Prep / Batch / Later`, produce a synthetic public artifact, and verify both UX and privacy before publishing.
+
+The current agent rail method also documents the run trace contract: keep the chat usable by default, show a compact run strip, and put the full step/tool/telemetry ledger behind an inspect drawer.
 
 ### Gmail Magic Resend / Reply QA
 
