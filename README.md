@@ -26,7 +26,7 @@ The latest public-safe artifact is a deliberately simplified career-inbox interf
 - daily sweeps visible in the rail
 - simple `Now`, `Prep`, `Batch`, and `Later` filters
 - `Cmd/Ctrl+K` search for person, company, or action
-- a full-height right-side chat rail: compact selected context, mode/model/tool state, subtle Parity Studio-style run telemetry, quick actions, message sources/actions/reasoning, collapsed run/tool ledger, collapsed proof drawer, suggested prompts, explicit permission boundary, and sticky composer
+- a full-height right-side chat rail: one-line selected object bar, mode/model/tool state, subtle Parity Studio-style run telemetry, compact actions, message sources/actions/reasoning, collapsed run/tool ledger, collapsed proof drawer, suggested prompts, explicit permission boundary, and sticky composer
 - NodeBench-style run anatomy: `plan -> tool_start -> tool_done -> answer -> ledger`, with visible steps, tool calls, latency, estimated cost, model route, source count, and `0 writes` until approval
 
 Open the standalone demo:

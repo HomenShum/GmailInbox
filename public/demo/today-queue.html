@@ -736,19 +736,25 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
       border-bottom: 1px solid var(--line);
-      padding: 16px;
+      padding: 9px 12px;
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     .agent-title {
       min-width: 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      column-gap: 8px;
+      row-gap: 2px;
     }
 
     .agent-head strong {
-      display: block;
-      font-size: 14px;
+      display: inline;
+      font-size: 13px;
+      line-height: 1.1;
     }
 
     .agent-head span {
@@ -758,18 +764,30 @@
       font-size: 11px;
     }
 
+    #agentContext {
+      grid-column: 1 / -1;
+      margin-top: 0;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--faint);
+    }
+
     .agent-status {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       width: fit-content;
-      margin-bottom: 7px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: var(--surface);
+      margin-bottom: 4px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
       color: var(--muted);
-      padding: 4px 8px;
-      font-size: 10px;
+      padding: 0;
+      font-size: 9px;
       font-weight: 800;
       letter-spacing: .02em;
       text-transform: uppercase;
@@ -797,9 +815,9 @@
     .agent-body {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 7px;
       overflow: hidden;
-      padding: 12px 16px 16px;
+      padding: 9px 14px 12px;
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 13px;
       flex: 1;
@@ -825,7 +843,7 @@
     }
 
     .agent-philosophy {
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
@@ -1052,27 +1070,25 @@
     }
 
     .agent-context-strip {
-      border: 1px solid #d8cffc;
-      border-radius: 20px;
-      background:
-        radial-gradient(circle at 96% 8%, rgba(101, 78, 230, .14), transparent 34%),
-        linear-gradient(150deg, #f7f4ff 0%, #fffdf9 80%);
-      padding: 12px;
-      box-shadow: 0 14px 34px rgba(79, 65, 41, .07);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      padding: 8px 9px;
+      box-shadow: none;
     }
 
     .strip-top {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 10px;
-      align-items: start;
+      gap: 8px;
+      align-items: center;
     }
 
     .strip-label {
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
       color: var(--faint);
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 900;
       letter-spacing: .08em;
       text-transform: uppercase;
@@ -1081,34 +1097,40 @@
     .strip-top strong {
       display: block;
       color: var(--ink);
-      font-size: 16px;
-      line-height: 1.12;
-      letter-spacing: -.03em;
+      font-size: 13px;
+      line-height: 1.16;
+      letter-spacing: -.01em;
     }
 
     .strip-score {
-      border-radius: 13px;
-      background: var(--ink);
-      color: var(--surface);
-      padding: 8px 9px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      padding: 5px 7px;
       text-align: center;
       font-weight: 900;
       line-height: 1;
+      font-size: 11px;
     }
 
     .strip-score small {
-      display: block;
-      margin-top: 3px;
-      color: rgba(255, 253, 249, .76);
+      display: inline;
+      margin-top: 0;
+      margin-left: 3px;
+      color: var(--faint);
       font-size: 9px;
       text-transform: uppercase;
     }
 
     .agent-context-strip p {
-      margin: 8px 0 0;
+      margin: 2px 0 0;
       color: var(--muted);
-      font-size: 12px;
-      line-height: 1.4;
+      font-size: 11px;
+      line-height: 1.32;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .mini-readiness {
@@ -1128,13 +1150,36 @@
     }
 
     .agent-inline-actions {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr 1fr;
-      gap: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .agent-inline-actions .agent-command {
-      min-height: 54px;
+      min-height: 0;
+      border-radius: 999px;
+      padding: 5px 8px;
+      background: transparent;
+    }
+
+    .agent-inline-actions .agent-command strong {
+      margin: 0;
+      font-size: 11px;
+      line-height: 1;
+    }
+
+    .agent-inline-actions .agent-command span {
+      display: none;
+    }
+
+    .agent-inline-actions .agent-command.primary {
+      background: var(--ink);
+      color: var(--surface);
+      border-color: var(--ink);
+    }
+
+    .agent-inline-actions .agent-command.primary strong {
+      color: var(--surface);
     }
 
     .agent-modebar {
@@ -1145,22 +1190,23 @@
 
     .mode-chip {
       min-width: 0;
-      border: 1px solid var(--line);
+      border: 0;
       border-radius: 999px;
-      background: var(--surface);
-      color: var(--muted);
-      padding: 5px 8px;
+      background: transparent;
+      color: var(--faint);
+      padding: 0;
       font-size: 10px;
-      font-weight: 850;
+      font-weight: 800;
+      font-family: var(--mono);
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
     }
 
     .mode-chip.active {
-      border-color: #d8cffc;
-      background: #f5f1ff;
-      color: var(--purple);
+      border-color: transparent;
+      background: transparent;
+      color: var(--muted);
     }
 
     .agent-run-strip {
@@ -1225,7 +1271,7 @@
     }
 
     .agent-chat-thread {
-      min-height: 290px;
+      min-height: 360px;
       flex: 1;
       overflow: auto;
       display: flex;
@@ -2628,30 +2674,24 @@
         <section class="agent-context-strip" aria-label="Selected context">
           <div class="strip-top">
             <div>
-              <span class="strip-label">Selected</span>
+              <span class="strip-label">Selected row</span>
               <strong>${activeRow.person}</strong>
-              <p>${activeRow.context}</p>
+              <p>${activeRow.context} / ${priorityText(activeRow.p)} / ${proof.status}</p>
             </div>
-            <div class="strip-score">${fit.score}<small>${fit.label}</small></div>
-          </div>
-          <p><strong>${shortActionFor(activeRow)}</strong> ${activeRow.next}</p>
-          <div class="mini-readiness">
-            <span>${priorityText(activeRow.p)}</span>
-            <span>${proof.status}</span>
-            <span>approval required</span>
+            <div class="strip-score">${fit.score}<small>fit</small></div>
           </div>
         </section>
 
         <section class="agent-modebar" aria-label="Agent mode and tool state">
-          <span class="mode-chip active">Mode: career triage</span>
-          <span class="mode-chip">Model: free-first route</span>
-          <span class="mode-chip">${telemetry.tools} tools ready</span>
+          <span class="mode-chip active">career triage</span>
+          <span class="mode-chip">free-first</span>
+          <span class="mode-chip">${telemetry.tools} tools</span>
         </section>
 
         <section class="agent-run-strip" aria-label="Agent run telemetry">
           <div class="run-title">
             <span class="run-status-dot" aria-hidden="true"></span>
-            <span><strong>${telemetry.status}</strong><small>${telemetry.id}</small></span>
+            <span><strong>${telemetry.status}</strong><small> / ${telemetry.id}</small></span>
           </div>
           <span class="run-metric">${telemetry.steps} steps</span>
           <span class="run-metric">${telemetry.tools} tools</span>
@@ -2661,7 +2701,7 @@
         <section class="agent-inline-actions" aria-label="Quick agent commands">
           <button class="agent-command primary" data-agent-mode="${primaryMode}" type="button"><strong>${modeTitle(primaryMode)}</strong><span>${primaryMode === "book" ? "Plan time." : primaryMode === "research" ? "Check proof." : "Write reply."}</span></button>
           <button class="agent-command" data-agent-mode="rank" type="button"><strong>Explain</strong><span>Why first.</span></button>
-          <button class="agent-command" data-agent-mode="trace" type="button"><strong>Trace</strong><span>Steps/tools.</span></button>
+          <button class="agent-command" data-agent-mode="trace" type="button"><strong>Details</strong><span>Steps/tools.</span></button>
         </section>
 
         <section class="agent-chat-thread" aria-label="Agent conversation">
@@ -2690,14 +2730,14 @@
             <div class="message-actions">
               <button type="button" data-agent-mode="draft">Draft alternate</button>
               <button type="button" data-agent-mode="book">Plan block</button>
-              <button type="button" data-agent-mode="trace">Inspect run</button>
+              <button type="button" data-agent-mode="trace">Details</button>
             </div>
           </div>
           <div class="chat-note">Ask naturally: "draft this more casually", "what am I missing?", "book a prep block", or "compare this to the other leads."</div>
         </section>
 
         <details class="agent-run-drawer">
-          <summary>Inspect run <span>${telemetry.steps} steps / ${telemetry.tools} tools / ${telemetry.writes}</span></summary>
+          <summary>Details <span>${telemetry.steps} steps / ${telemetry.tools} tools / ${telemetry.writes}</span></summary>
           <div class="agent-disclosure-body">
             <div class="ledger-summary" aria-label="Run telemetry summary">
               <span><strong>${telemetry.duration}</strong> latency</span>

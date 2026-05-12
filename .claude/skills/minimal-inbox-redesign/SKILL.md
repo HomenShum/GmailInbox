@@ -143,7 +143,7 @@ The rail should read as a chat surface with compact decision context. Give it th
 
 ```text
 rail header with active object
--> compact selected context strip
+-> one-line selected object bar
 -> mode/model/tool state chips
 -> compact run telemetry strip
 -> quick action row
@@ -184,6 +184,8 @@ Run ready / run_id / 5 steps / 5 tools / 2.4s / $0.004 / 0 writes
 ```
 
 Keep that strip visually quiet. Use the Parity Studio chat rule: tool state should feel like a faint inline affordance, not a metrics card. Prefer mono microcopy, low-contrast chips, small status dots, and one-line tool result rows.
+
+The selected object should also be quiet. Keep it to one compact row with object name, fit score, lane, and proof state. Put the actual recommendation inside the assistant message so the rail remains chat-first.
 
 The detailed run trace belongs behind a disclosure:
 

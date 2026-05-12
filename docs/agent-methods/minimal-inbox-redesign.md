@@ -104,7 +104,7 @@ For a premium desktop rail, structure it as:
 
 ```text
 header: active object + local-first status
-compact context strip: selected object + score + next action
+compact object bar: selected object + score + lane + proof state
 mode state: mode / model / tool activity chips
 run state: compact steps / tools / latency / cost / writes
 quick actions: draft / explain / verify
@@ -148,6 +148,8 @@ Run ready / 5 steps / 5 tools / 2.4s / $0.004 / 0 writes
 ```
 
 The Parity Studio chat reference keeps this subtle: tool calls are small inline chips, tool completions are faint single-line rows, and the composer remains the main affordance. Avoid a wall of telemetry cards unless the user explicitly opens the run ledger.
+
+Keep the first screen chat-first: the selected context should be one compact object bar, not a summary card. Move the recommendation and next action into the assistant response.
 
 The detailed drawer should show:
 
