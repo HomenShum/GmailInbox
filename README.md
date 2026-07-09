@@ -36,7 +36,7 @@ Open the standalone demo:
 Privacy note: the demo uses synthetic/anonymized names, companies, and messages. The private Gmail/LinkedIn tracker that inspired it is not committed.
 
 <p>
-  <img src="https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/today-queue-preview.png" alt="Today Queue minimal inbox triage demo" width="960" />
+  <img src="https://github.com/HomenShum/GmailInbox/raw/main/public/demo/today-queue-preview.png" alt="Today Queue minimal inbox triage demo" width="960" />
 </p>
 
 ### Agent Method / Redesign Skill
@@ -55,7 +55,7 @@ The current agent rail method also documents the run trace contract: keep the ch
 ### Gmail Magic Resend / Reply QA
 
 <p>
-  <img src="https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/gmail-magic-resend.gif" alt="Gmail magic resend QA flow" width="960" />
+  <img src="https://github.com/HomenShum/GmailInbox/raw/main/public/demo/gmail-magic-resend.gif" alt="Gmail magic resend QA flow" width="960" />
 </p>
 
 Feature contract:
@@ -68,7 +68,7 @@ Feature contract:
 ### QA Dogfood Corrections
 
 <p>
-  <img src="https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/qa-dogfood-snapshots.png" alt="QA dogfood before finding after correction" width="960" />
+  <img src="https://github.com/HomenShum/GmailInbox/raw/main/public/demo/qa-dogfood-snapshots.png" alt="QA dogfood before finding after correction" width="960" />
 </p>
 
 Every visible UI correction should leave a trail: what looked wrong, what the dogfood finding was, and what changed.
@@ -76,7 +76,7 @@ Every visible UI correction should leave a trail: what looked wrong, what the do
 ### Clear Lanes
 
 <p>
-  <img src="https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/workflow-lanes-demo.gif" alt="One workspace clear lanes demo" width="960" />
+  <img src="https://github.com/HomenShum/GmailInbox/raw/main/public/demo/workflow-lanes-demo.gif" alt="One workspace clear lanes demo" width="960" />
 </p>
 
 The downsized navigation is intentional: one workspace with stable lanes instead of many similar pages.
@@ -84,7 +84,7 @@ The downsized navigation is intentional: one workspace with stable lanes instead
 ### User And Person States
 
 <p>
-  <img src="https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/person-state-matrix.png" alt="User states and person states matrix" width="960" />
+  <img src="https://github.com/HomenShum/GmailInbox/raw/main/public/demo/person-state-matrix.png" alt="User states and person states matrix" width="960" />
 </p>
 
 The same workspace should work for different people by changing defaults, copy, and artifacts, not by fragmenting the app into more tabs.
@@ -92,7 +92,7 @@ The same workspace should work for different people by changing defaults, copy, 
 ### Remotion End-to-End Workflow Video
 
 <p>
-  <img src="https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/remotion-workflow-storyboard.png" alt="Remotion end-to-end workflow storyboard" width="960" />
+  <img src="https://github.com/HomenShum/GmailInbox/raw/main/public/demo/remotion-workflow-storyboard.png" alt="Remotion end-to-end workflow storyboard" width="960" />
 </p>
 
 The Remotion demo is scene-based so the video can explain every state transition: scale problem, private memory, top jobs, NodeBench research, identity trends, and QA proof.
@@ -105,7 +105,7 @@ npm run demo:video:vertical
 ### Public-Safe Overview GIF
 
 <p>
-  <img src="https://github.com/HomenShum/gmail-workspace-public/raw/main/public/demo/gmail-workspace-public-demo.gif" alt="Public-safe Gmail Workspace animated demo" width="960" />
+  <img src="https://github.com/HomenShum/GmailInbox/raw/main/public/demo/gmail-workspace-public-demo.gif" alt="Public-safe Gmail Workspace animated demo" width="960" />
 </p>
 
 ## Runtime At A Glance
@@ -328,7 +328,7 @@ The current policy is: publish source, sanitized assets, and docs; keep private 
 To distribute a public version, generate a sanitized mirror instead of flipping this private working repo public:
 
 ```bash
-npm run public:export -- C:/tmp/gmail-workspace-public
+npm run public:export -- C:/tmp/gmail-inbox
 ```
 
 See [docs/public-distribution.md](docs/public-distribution.md).
