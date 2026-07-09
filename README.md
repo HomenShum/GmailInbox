@@ -105,7 +105,7 @@ npm run demo:video:vertical
 ### Public-Safe Overview GIF
 
 <p>
-  <img src="https://github.com/HomenShum/GmailInbox/raw/main/public/demo/gmail-workspace-public-demo.gif" alt="Public-safe Gmail Workspace animated demo" width="960" />
+  <img src="https://github.com/HomenShum/GmailInbox/raw/main/public/demo/gmail-inbox-demo.gif" alt="Public-safe Gmail Inbox animated demo" width="960" />
 </p>
 
 ## Runtime At A Glance

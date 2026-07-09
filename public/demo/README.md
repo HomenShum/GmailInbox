@@ -17,8 +17,8 @@ npm run demo:video:vertical
 
 Committed public-safe assets:
 
-- `gmail-workspace-public-demo.gif`
-- `gmail-workspace-public-demo-poster.png`
+- `gmail-inbox-demo.gif`
+- `gmail-inbox-demo-poster.png`
 - `gmail-magic-resend.gif`
 - `gmail-magic-resend.poster.png`
 - `workflow-lanes-demo.gif`

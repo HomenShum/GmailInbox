@@ -82,8 +82,8 @@ const excludedPrefixes = [
 ];
 
 const publicDemoExceptions = new Set(["public/demo/README.md"]);
-publicDemoExceptions.add("public/demo/gmail-workspace-public-demo.gif");
-publicDemoExceptions.add("public/demo/gmail-workspace-public-demo-poster.png");
+publicDemoExceptions.add("public/demo/gmail-inbox-demo.gif");
+publicDemoExceptions.add("public/demo/gmail-inbox-demo-poster.png");
 publicDemoExceptions.add("public/demo/gmail-magic-resend.gif");
 publicDemoExceptions.add("public/demo/gmail-magic-resend.poster.png");
 publicDemoExceptions.add("public/demo/workflow-lanes-demo.gif");

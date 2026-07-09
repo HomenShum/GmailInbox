@@ -37,8 +37,8 @@ public/demo/*.webm
 public/demo/*.gif
 public/demo/*-poster.png
 !public/demo/README.md
-!public/demo/gmail-workspace-public-demo.gif
-!public/demo/gmail-workspace-public-demo-poster.png
+!public/demo/gmail-inbox-demo.gif
+!public/demo/gmail-inbox-demo-poster.png
 !public/demo/gmail-magic-resend.gif
 !public/demo/gmail-magic-resend.poster.png
 !public/demo/workflow-lanes-demo.gif

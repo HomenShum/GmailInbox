@@ -3,8 +3,8 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "public" / "demo" / "gmail-workspace-public-demo.gif"
-POSTER = ROOT / "public" / "demo" / "gmail-workspace-public-demo-poster.png"
+OUT = ROOT / "public" / "demo" / "gmail-inbox-demo.gif"
+POSTER = ROOT / "public" / "demo" / "gmail-inbox-demo-poster.png"
 WIDTH, HEIGHT = 960, 540
 FPS = 10
 FRAMES_PER_SCENE = 14
