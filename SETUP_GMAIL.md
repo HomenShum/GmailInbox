@@ -25,7 +25,7 @@ This wires your real Gmail inbox into the dashboard. Tokens stay on your machine
 
 ## 2. Drop them into `.env.local`
 
-Append to `D:\gmail-dashboard\.env.local`:
+Append to `.env.local` in the repository root (create it if needed):
 
 ```env
 GOOGLE_CLIENT_ID=<paste client id>.apps.googleusercontent.com
@@ -105,3 +105,5 @@ Current setup is fine for personal local-first use. Before exposing this on a se
 - Add Pub/Sub watch for live push instead of polling (`gmail.users.watch` + Cloud Pub/Sub topic).
 - Per-user accounts table (multi-user mode).
 - Audit log of every `users.messages.modify` call before it executes.
+
+[Change history](CHANGELOG/docs/setup-gmail.md).

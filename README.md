@@ -1,8 +1,12 @@
-# Gmail Workspace
+# GmailInbox (Gmail Workspace)
 
 Local-first Gmail command center for turning a large inbox into a small set of decisions: top jobs, reply queues, calendar blocks, goals, briefings, and agent-assisted follow-up.
 
 The core idea is simple: private data stays local, public research is delegated to NodeBench, and every agent output needs evidence.
+
+GmailInbox is the public source distribution of Gmail Workspace. Start with [Quick Start](#quick-start), then [Gmail OAuth setup](SETUP_GMAIL.md) when connecting a real account. Read [PUBLIC_EXPORT.md](PUBLIC_EXPORT.md) for the export boundary, and keep real account data, tokens, and local configuration out of git.
+
+The setup route below is checked against tracked files. Connecting Gmail, calling providers, and running the app still require validation in your own environment.
 
 ## Visual Showcase
 
@@ -173,7 +177,7 @@ Do not commit:
 - generated identity maps or recruiter trend files from private email history
 - raw resume paths or private document contents
 
-The `.gitignore` enforces the main local-only artifact paths. See [docs/publication-checklist.md](docs/publication-checklist.md) before making the repo public, and [docs/publication-decisions.md](docs/publication-decisions.md) for the decision log behind the cleanup.
+The `.gitignore` enforces the main local-only artifact paths. See [docs/publication-checklist.md](docs/publication-checklist.md) before publishing changes, and [docs/publication-decisions.md](docs/publication-decisions.md) for the decision log behind the cleanup.
 
 ## Demo Video
 
@@ -194,9 +198,10 @@ For a public release, render with sanitized assets, inspect the frames, then upl
 
 ## Quick Start
 
+This public tree does not track `.env.example`. Create `.env.local` in the repository root only when configuring an integration, using the setting names in [Gmail OAuth setup](SETUP_GMAIL.md) and the sections below. Keep local credentials out of git.
+
 ```bash
 npm install
-cp .env.example .env.local
 npm run seed
 npm run dev
 ```
@@ -309,7 +314,7 @@ npm run demo:video
 
 ## Publicizing Safely
 
-Before changing repository visibility:
+Before publishing changes from this public source tree:
 
 ```bash
 git status --short
@@ -325,10 +330,12 @@ git ls-files public
 
 The current policy is: publish source, sanitized assets, and docs; keep private videos, screenshots, databases, logs, and generated identity artifacts local.
 
-To distribute a public version, generate a sanitized mirror instead of flipping this private working repo public:
+This repository is already the public source distribution. If you develop in a separate private workspace, generate a sanitized export for further distribution:
 
 ```bash
 npm run public:export -- C:/tmp/gmail-inbox
 ```
 
-See [docs/public-distribution.md](docs/public-distribution.md).
+See [PUBLIC_EXPORT.md](PUBLIC_EXPORT.md) for the public export's documented exclusions.
+
+[Change history](CHANGELOG/docs/readme.md).
